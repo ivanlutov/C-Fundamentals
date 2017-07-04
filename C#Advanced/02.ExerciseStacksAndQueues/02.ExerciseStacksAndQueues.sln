@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.ReverseNumbers", "01.ReverseNumbers\01.ReverseNumbers.csproj", "{B1E8F8B0-514D-4354-B2A8-CA332960A1CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.BasicStackOperations", "02.BasicStackOperations\02.BasicStackOperations.csproj", "{195F24F7-D9E9-4958-A0AB-419EBB2C95C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.MaximumElement", "03.MaximumElement\03.MaximumElement.csproj", "{B2CF133B-7F25-405C-96DE-0AF3B9573B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.BasicQueueOperations", "04.BasicQueueOperations\04.BasicQueueOperations.csproj", "{6A3E17A6-F197-42AE-9831-0AD5F5222CC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.SequenceWithQueue", "05.SequenceWithQueue\05.SequenceWithQueue.csproj", "{D96CA7CB-0A35-49C2-AB71-7E318EFE3D97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.TruckTour", "06.TruckTour\06.TruckTour.csproj", "{764C5CA8-842A-4414-A046-1371D3ED4F30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.BalancedParenthesis", "07.BalancedParenthesis\07.BalancedParenthesis.csproj", "{1CC3953A-408A-4B5C-8DDF-E3B5701DEB49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.SimpleTextEditor", "10.SimpleTextEditor\10.SimpleTextEditor.csproj", "{A8052ACE-3DD0-452A-8695-052C129B489E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.RecursiveFibonacci", "08.RecursiveFibonacci\08.RecursiveFibonacci.csproj", "{C4621D28-BE0A-41C2-988F-9B1BCDE458BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.StackFibonacci", "09.StackFibonacci\09.StackFibonacci.csproj", "{801102E5-A5D2-483C-BCE2-106706E8168E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.PoisonousPlants", "11.PoisonousPlants\11.PoisonousPlants.csproj", "{974C4761-B9B0-4346-84F1-AB9ABAB2EBAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1E8F8B0-514D-4354-B2A8-CA332960A1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E8F8B0-514D-4354-B2A8-CA332960A1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E8F8B0-514D-4354-B2A8-CA332960A1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E8F8B0-514D-4354-B2A8-CA332960A1CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{195F24F7-D9E9-4958-A0AB-419EBB2C95C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{195F24F7-D9E9-4958-A0AB-419EBB2C95C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{195F24F7-D9E9-4958-A0AB-419EBB2C95C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{195F24F7-D9E9-4958-A0AB-419EBB2C95C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2CF133B-7F25-405C-96DE-0AF3B9573B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2CF133B-7F25-405C-96DE-0AF3B9573B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2CF133B-7F25-405C-96DE-0AF3B9573B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2CF133B-7F25-405C-96DE-0AF3B9573B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A3E17A6-F197-42AE-9831-0AD5F5222CC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A3E17A6-F197-42AE-9831-0AD5F5222CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A3E17A6-F197-42AE-9831-0AD5F5222CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A3E17A6-F197-42AE-9831-0AD5F5222CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D96CA7CB-0A35-49C2-AB71-7E318EFE3D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96CA7CB-0A35-49C2-AB71-7E318EFE3D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96CA7CB-0A35-49C2-AB71-7E318EFE3D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96CA7CB-0A35-49C2-AB71-7E318EFE3D97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764C5CA8-842A-4414-A046-1371D3ED4F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764C5CA8-842A-4414-A046-1371D3ED4F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764C5CA8-842A-4414-A046-1371D3ED4F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764C5CA8-842A-4414-A046-1371D3ED4F30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CC3953A-408A-4B5C-8DDF-E3B5701DEB49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CC3953A-408A-4B5C-8DDF-E3B5701DEB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CC3953A-408A-4B5C-8DDF-E3B5701DEB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CC3953A-408A-4B5C-8DDF-E3B5701DEB49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8052ACE-3DD0-452A-8695-052C129B489E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8052ACE-3DD0-452A-8695-052C129B489E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8052ACE-3DD0-452A-8695-052C129B489E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8052ACE-3DD0-452A-8695-052C129B489E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4621D28-BE0A-41C2-988F-9B1BCDE458BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4621D28-BE0A-41C2-988F-9B1BCDE458BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4621D28-BE0A-41C2-988F-9B1BCDE458BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4621D28-BE0A-41C2-988F-9B1BCDE458BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{801102E5-A5D2-483C-BCE2-106706E8168E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801102E5-A5D2-483C-BCE2-106706E8168E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801102E5-A5D2-483C-BCE2-106706E8168E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801102E5-A5D2-483C-BCE2-106706E8168E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{974C4761-B9B0-4346-84F1-AB9ABAB2EBAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{974C4761-B9B0-4346-84F1-AB9ABAB2EBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{974C4761-B9B0-4346-84F1-AB9ABAB2EBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{974C4761-B9B0-4346-84F1-AB9ABAB2EBAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

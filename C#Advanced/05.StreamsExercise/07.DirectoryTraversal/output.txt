@@ -1,0 +1,57 @@
+.zip
+--Submission_3566114.zip - 5
+--blog design.zip - 118
+--04. CSharp-OOP-Basics-Encapsulation-Exercises (1).zip - 158
+--04. CSharp-OOP-Basics-Encapsulation-Exercises.zip - 158
+--04. CSharp-Advanced-Streams-Exercise.zip - 204
+--04. Advanced-CSharp-Streams-and-Files-Demos.zip - 555
+--BashSoft-FirstWeek.zip - 1370
+--07. Blog-Admin-Functionality-Skeleton.zip - 4701
+--SoftUniBlog Advanced Functionality.zip - 4718
+--BlogAdminFunctionalitySkeleton.zip - 14065
+--php-sever-skeleton.zip - 89946
+.docx
+--03. CSharp-OOP-Basics-Static-Members-Exercise.docx - 124
+--02. CSharp-Advanced-Sets-And-Dictionaries-Exercises.docx - 134
+--05. CSharp-OOP-Basics-Exercises.docx - 144
+--03. CSharp-Advanced-Matrices-Exercises (1).docx - 215
+--03. CSharp-Advanced-Matrices-Exercises.docx - 215
+--02. CSharp-Advanced-Sets-And-Dictionaries-Lab.docx - 221
+--03. CSharp-Advanced-Matrices-Lab.docx - 227
+--01. CSharp-Advanced-Stacks-And-Queues-Exercises.docx - 237
+--0. Advanced-CSharp-Lab-Overview.docx - 251
+--05. CSharp-OOP-Basics-Inheritance-Lab.docx - 289
+.txt
+--agile scrum.txt - 0
+--httpsvisualgo.neten.txt - 0
+--JS Core.txt - 0
+--programing fundamentals.txt - 0
+--resheniq.txt - 0
+--Най-дългата поредица от елементи.txt - 0
+.pptx
+--05. CSharp-OOP-Basics-Inheritance.pptx - 3004
+--02. CSharp-Advanced-Sets-And-Dictionaries.pptx - 4049
+--15. Programming-Fundamentals-Regular-Expressions-Regex.pptx - 4279
+--03. CSharp-OOP-Basics-Static-Members.pptx - 4347
+--03. CSharp-Advanced-Matrices.pptx - 4792
+.exe
+--flux-setup.exe - 583
+--Git-2.11.0.3-64-bit.exe - 33394
+--xampp-win32-7.0.13-1-VC14-installer.exe - 122699
+--JetBrains.ReSharperUltimate.2017.1.2.exe - 166001
+.rar
+--00. CSharp-OOP-Basics-Course-Lab.rar - 24
+--First,Second,Third Exam Problems.rar - 438
+--Blog-Basic-Functionality-SkeletonJavaScript.rar - 4322
+--Programming Fundamentals.rar - 13639
+.lnk
+--CPUID HWMonitor.lnk - 0
+--Visual Studio 2015.lnk - 1
+.ini
+--desktop.ini - 0
+.mp4
+--(Hdvidz.in)_Eminem---Not-Afraid.mp4 - 34947
+.pdf
+--Manning.Dependency.Injection.In.Dot.NET.Sep.2011.ISBN.1935182501.pdf - 10385
+.xlsx
+--0. CSharp-Advanced-Schedule.xlsx - 141
