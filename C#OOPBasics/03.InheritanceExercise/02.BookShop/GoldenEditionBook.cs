@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _02.BookShop
+﻿namespace _02.BookShop
 {
     public class GoldenEditionBook : Book
     {
-        public GoldenEditionBook(string author, string title, decimal price) 
+        public GoldenEditionBook(string author, string title, decimal price)
             : base(author, title, price)
         {
         }
@@ -20,6 +14,5 @@ namespace _02.BookShop
                 return base.Price * 1.3m;
             }
         }
-
     }
 }

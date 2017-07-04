@@ -11,6 +11,7 @@ namespace _03.Mankind
         public static void Main()
         {
             var studentTokens = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
             Student student;
             try
             {
@@ -25,7 +26,6 @@ namespace _03.Mankind
             var workerTokens = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             Worker worker;
-
             try
             {
                 worker = new Worker(workerTokens[0], workerTokens[1], decimal.Parse(workerTokens[2]), decimal.Parse(workerTokens[3]));

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _01.Person
 {
@@ -17,6 +13,7 @@ namespace _01.Person
             this.Name = name;
             this.Age = age;
         }
+
         public virtual string Name
         {
             get { return this.name; }
@@ -30,6 +27,7 @@ namespace _01.Person
                 this.name = value;
             }
         }
+
         public virtual int Age
         {
             get { return this.age; }
@@ -51,6 +49,5 @@ namespace _01.Person
 
             return stringBuilder.ToString();
         }
-
     }
 }

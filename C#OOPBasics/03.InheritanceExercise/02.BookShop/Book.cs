@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _02.BookShop
 {
@@ -18,6 +15,7 @@ namespace _02.BookShop
             this.Title = title;
             this.Price = price;
         }
+
         public string Author
         {
             get
@@ -55,7 +53,6 @@ namespace _02.BookShop
                 this.title = value;
             }
         }
-
 
         public virtual decimal Price
         {

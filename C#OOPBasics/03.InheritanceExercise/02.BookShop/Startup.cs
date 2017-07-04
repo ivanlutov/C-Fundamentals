@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _02.BookShop
 {
@@ -26,7 +22,6 @@ namespace _02.BookShop
             {
                 Console.WriteLine(ae.Message);
             }
-
         }
     }
 }
