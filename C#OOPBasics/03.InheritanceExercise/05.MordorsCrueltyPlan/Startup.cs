@@ -1,11 +1,9 @@
-﻿using System;
+﻿using _05.MordorsCrueltyPlan.FoodModels;
+using _05.MordorsCrueltyPlan.MoodModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using _05.MordorsCrueltyPlan.FoodModels;
-using _05.MordorsCrueltyPlan.MoodModels;
 
 namespace _05.MordorsCrueltyPlan
 {
@@ -15,7 +13,7 @@ namespace _05.MordorsCrueltyPlan
         {
             var foods = new List<Food>();
 
-            var foodTokens = Regex.Split(Console.ReadLine(),@"\s+");
+            var foodTokens = Regex.Split(Console.ReadLine(), @"\s+");
 
             foreach (var foodToken in foodTokens)
             {
@@ -25,7 +23,7 @@ namespace _05.MordorsCrueltyPlan
 
             Mood mood = MoodFactory.CreateMood(foods);
 
-            Console.WriteLine(foods.Sum(f=>f.PointOfHappines));
+            Console.WriteLine(foods.Sum(f => f.PointOfHappines));
             Console.WriteLine(mood);
         }
     }

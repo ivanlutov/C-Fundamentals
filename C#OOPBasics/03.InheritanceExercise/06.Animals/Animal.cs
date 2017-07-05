@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace _06.Animals
 {
@@ -33,7 +28,6 @@ namespace _06.Animals
                 this.name = value;
             }
         }
-
 
         public string Gender
         {

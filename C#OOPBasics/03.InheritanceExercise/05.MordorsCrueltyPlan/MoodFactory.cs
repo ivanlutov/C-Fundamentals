@@ -1,10 +1,7 @@
-﻿using System;
+﻿using _05.MordorsCrueltyPlan.FoodModels;
+using _05.MordorsCrueltyPlan.MoodModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _05.MordorsCrueltyPlan.FoodModels;
-using _05.MordorsCrueltyPlan.MoodModels;
 
 namespace _05.MordorsCrueltyPlan
 {

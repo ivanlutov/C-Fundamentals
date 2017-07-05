@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _04.OnlineRadioDatabase
 {
@@ -35,7 +33,6 @@ namespace _04.OnlineRadioDatabase
             var result = 0;
             foreach (var song in songs)
             {
-
                 DateTime time;
                 if (DateTime.TryParseExact(song.Lenght, "mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out time))
                 {

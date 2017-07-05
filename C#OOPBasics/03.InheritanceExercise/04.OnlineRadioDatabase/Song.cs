@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace _04.OnlineRadioDatabase
 {
@@ -19,6 +14,7 @@ namespace _04.OnlineRadioDatabase
             this.Name = name;
             this.Lenght = lenght;
         }
+
         public string Name
         {
             get { return this.name; }
@@ -32,7 +28,7 @@ namespace _04.OnlineRadioDatabase
                 this.name = value;
             }
         }
-      
+
         public Artist Artist
         {
             get { return this.artist; }

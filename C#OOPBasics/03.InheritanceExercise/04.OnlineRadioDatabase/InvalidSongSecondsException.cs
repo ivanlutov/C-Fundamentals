@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _04.OnlineRadioDatabase
+﻿namespace _04.OnlineRadioDatabase
 {
     public class InvalidSongSecondsException : InvalidSongLengthException
     {
@@ -13,14 +7,11 @@ namespace _04.OnlineRadioDatabase
         public InvalidSongSecondsException()
             : base(Message)
         {
-
         }
 
         public InvalidSongSecondsException(string message)
             : base(message)
         {
-
         }
-
     }
 }

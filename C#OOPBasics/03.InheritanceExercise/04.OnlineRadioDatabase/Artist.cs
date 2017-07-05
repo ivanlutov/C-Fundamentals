@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _04.OnlineRadioDatabase
+﻿namespace _04.OnlineRadioDatabase
 {
     public class Artist
     {
@@ -14,6 +8,7 @@ namespace _04.OnlineRadioDatabase
         {
             this.Name = name;
         }
+
         public string Name
         {
             get { return this.name; }
