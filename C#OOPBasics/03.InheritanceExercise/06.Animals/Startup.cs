@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _06.Animals
 {
@@ -25,18 +21,23 @@ namespace _06.Animals
                         case "Cat":
                             animal = new Cat(tokens[0], int.Parse(tokens[1]), tokens[2]);
                             break;
+
                         case "Dog":
                             animal = new Dog(tokens[0], int.Parse(tokens[1]), tokens[2]);
                             break;
+
                         case "Frog":
                             animal = new Frog(tokens[0], int.Parse(tokens[1]), tokens[2]);
                             break;
+
                         case "Kittens":
                             animal = new Kitten(tokens[0], int.Parse(tokens[1]));
                             break;
+
                         case "Tomcat":
                             animal = new Tomcat(tokens[0], int.Parse(tokens[1]));
                             break;
+
                         default:
                             throw new ArgumentException("Invalid input!");
                     }
