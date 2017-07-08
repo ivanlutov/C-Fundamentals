@@ -33,6 +33,6 @@
 
     public override string Draw()
     {
-        return "Rectangle";
+        return base.Draw() + "Rectangle";
     }
 }

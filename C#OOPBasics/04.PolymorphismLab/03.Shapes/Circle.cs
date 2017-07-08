@@ -27,6 +27,6 @@ public class Circle : Shape
 
     public override string Draw()
     {
-        return "Circle";
+        return base.Draw() + "Circle";
     }
 }
