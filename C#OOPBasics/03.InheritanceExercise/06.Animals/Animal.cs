@@ -20,7 +20,7 @@ namespace _06.Animals
             get { return this.name; }
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Invalid input!");
                 }
@@ -34,7 +34,7 @@ namespace _06.Animals
             get { return this.gender; }
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Invalid input!");
                 }
@@ -54,7 +54,7 @@ namespace _06.Animals
                 //{
                 //    throw new FormatException("Invalid input!");
                 //}
-                if (value < 0)
+                if (string.IsNullOrWhiteSpace(value.ToString()) || value < 0)
                 {
                     throw new ArgumentException("Invalid input!");
                 }

@@ -11,6 +11,11 @@ namespace _06.Animals
             while (type != "Beast!")
             {
                 var tokens = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var name = tokens[0];
+                int age;
+                if (Int32.TryParse(tokens[1], out age))
+                {
+                }
 
                 try
                 {
@@ -19,23 +24,23 @@ namespace _06.Animals
                     switch (type)
                     {
                         case "Cat":
-                            animal = new Cat(tokens[0], int.Parse(tokens[1]), tokens[2]);
+                            animal = new Cat(name, age, tokens[2]);
                             break;
 
                         case "Dog":
-                            animal = new Dog(tokens[0], int.Parse(tokens[1]), tokens[2]);
+                            animal = new Dog(name, age, tokens[2]);
                             break;
 
                         case "Frog":
-                            animal = new Frog(tokens[0], int.Parse(tokens[1]), tokens[2]);
+                            animal = new Frog(name, age, tokens[2]);
                             break;
 
                         case "Kittens":
-                            animal = new Kitten(tokens[0], int.Parse(tokens[1]));
+                            animal = new Kitten(name, age);
                             break;
 
                         case "Tomcat":
-                            animal = new Tomcat(tokens[0], int.Parse(tokens[1]));
+                            animal = new Tomcat(name, age);
                             break;
 
                         default:
