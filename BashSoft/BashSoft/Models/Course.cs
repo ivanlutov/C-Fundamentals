@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BashSoft.Exceptions;
 
 namespace BashSoft.Models
 {
@@ -24,8 +24,7 @@ namespace BashSoft.Models
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException(nameof(this.name),
-                        ExceptionMessages.NullOrEmptyValue);
+                    throw new InvalidStringException();
                 }
 
                 this.name = value;
@@ -41,7 +40,7 @@ namespace BashSoft.Models
         {
             if (this.studentsByName.ContainsKey(student.UserName))
             {
-                throw new ArgumentNullException(string.Format(ExceptionMessages.StudentAlreadyEnrolledInGivenCourse, student.UserName, this.Name));
+                throw new DuplicateEntryInStructureException(student.UserName, this.Name);
             }
 
             this.studentsByName.Add(student.UserName, student);

@@ -45,15 +45,12 @@ namespace _06.Animals
 
         public int Age
         {
-            get { return this.age; }
+            get
+            {
+                return this.age;
+            }
             set
             {
-                //var pattern = @"^\d+$";
-                //var rgx = new Regex(pattern);
-                //if (!rgx.IsMatch(value.ToString()))
-                //{
-                //    throw new FormatException("Invalid input!");
-                //}
                 if (string.IsNullOrWhiteSpace(value.ToString()) || value < 0)
                 {
                     throw new ArgumentException("Invalid input!");

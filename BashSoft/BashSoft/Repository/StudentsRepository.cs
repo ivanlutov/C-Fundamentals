@@ -1,9 +1,10 @@
-﻿using BashSoft.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using BashSoft.Exceptions;
+using BashSoft.Models;
 
 namespace BashSoft
 {
@@ -101,19 +102,23 @@ namespace BashSoft
 
                             course.EnrollStudent(student);
                         }
-                        catch (FormatException fex)
+                        catch (Exception ex)
                         {
-                            OutputWriter.DisplayException(fex.Message + $"at line: {line}");
+                            OutputWriter.DisplayException(ex.Message + $"at line: {line}");
                         }
+                        //catch (FormatException fex)
+                        //{
+                        //    OutputWriter.DisplayException(fex.Message + $"at line: {line}");
+                        //}
                     }
                 }
 
-                isDataInitialized = true;
+                this.isDataInitialized = true;
                 OutputWriter.WriteMessageOnNewLine("Data read!");
             }
             else
             {
-                OutputWriter.DisplayException(ExceptionMessages.InvalidPath);
+                throw new InvalidPathException();
             }
         }
 

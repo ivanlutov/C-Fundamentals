@@ -12,30 +12,33 @@ namespace _06.Animals
             {
                 var tokens = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 var name = tokens[0];
-                int age;
-                if (Int32.TryParse(tokens[1], out age))
-                {
-                }
+                int age = int.Parse(tokens[1]);
+                //int age;
+                //if (!int.TryParse(tokens[1], out age))
+                //{
+                //    throw new ArgumentException("Invalid input!");
+                //}
+
+                var gender = tokens[2];
 
                 try
                 {
-                    Animal animal = null;
-
+                    Animal animal;
                     switch (type)
                     {
                         case "Cat":
-                            animal = new Cat(name, age, tokens[2]);
+                            animal = new Cat(name, age, gender);
                             break;
 
                         case "Dog":
-                            animal = new Dog(name, age, tokens[2]);
+                            animal = new Dog(name, age, gender);
                             break;
 
                         case "Frog":
-                            animal = new Frog(name, age, tokens[2]);
+                            animal = new Frog(name, age, gender);
                             break;
 
-                        case "Kittens":
+                        case "Kitten":
                             animal = new Kitten(name, age);
                             break;
 
@@ -52,10 +55,6 @@ namespace _06.Animals
                 catch (ArgumentException ae)
                 {
                     Console.WriteLine(ae.Message);
-                }
-                catch (FormatException fe)
-                {
-                    Console.WriteLine("Invalid input!");
                 }
 
                 type = Console.ReadLine();
