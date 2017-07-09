@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_03.WildFarm.Startup" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Food">
+    <Position X="1.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\Foods\Food.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Vegetable">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Foods\Vegetable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Meat">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Foods\Meat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Animal">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAIAAAACAQAACAFACAgAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Animals\Animal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Mammal">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAkAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Animals\Mammal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Felime">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Animals\Felime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Mouse">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Animals\Mouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Zebra">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Animals\Zebra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Cat">
+    <Position X="4.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Animals\Cat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_03.WildFarm.Tiger">
+    <Position X="9" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Animals\Tiger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
