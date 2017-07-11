@@ -2,8 +2,7 @@
 {
     public class CasualRace : Race
     {
-        public CasualRace(int id, int length, string route, int prizePool) 
-            : base(id, length, route, prizePool)
+        public CasualRace(int length, string route, int prizePool) : base(length, route, prizePool)
         {
         }
     }

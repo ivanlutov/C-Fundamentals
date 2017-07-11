@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 public abstract class Car
 {
@@ -10,10 +9,9 @@ public abstract class Car
     private int acceleration;
     private int suspension;
     private int durability;
-    private int id;
-    protected Car(int id, string brand, string model, int yearOfProduction, int horsepower, int acceleration, int suspension, int durability)
+
+    protected Car(string brand, string model, int yearOfProduction, int horsepower, int acceleration, int suspension, int durability)
     {
-        this.ID = id;
         this.Brand = brand;
         this.Model = model;
         this.YearOfProduction = yearOfProduction;
@@ -23,11 +21,6 @@ public abstract class Car
         this.Durability = durability;
     }
 
-    public int ID
-    {
-        get { return id; }
-        set { id = value; }
-    }
     public string Brand
     {
         get { return brand; }

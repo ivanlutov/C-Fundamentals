@@ -4,11 +4,11 @@ namespace NeedForSpeed.Models
 {
     public class Garage
     {
-        public List<Car> parkedCars;
+        public Dictionary<int, Car> parkedCars;
+
         public Garage()
         {
-            this.parkedCars = new List<Car>();
+            this.parkedCars = new Dictionary<int, Car>();
         }
-       
     }
 }

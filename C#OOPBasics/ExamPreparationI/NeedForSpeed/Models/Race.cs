@@ -4,20 +4,19 @@ namespace NeedForSpeed.Models
 {
     public abstract class Race
     {
-        private int id;
         private int length;
         private string route;
         private int prizePool;
-        public List<Car> participants;
+        public Dictionary<int, Car> participants;
 
-        protected Race(int id,int length, string route, int prizePool)
+        protected Race(int length, string route, int prizePool)
         {
-            this.ID = id;
             this.Length = length;
             this.Route = route;
             this.PrizePool = prizePool;
-            this.participants = new List<Car>();
+            this.participants = new Dictionary<int, Car>();
         }
+
         public int Length
         {
             get { return length; }
@@ -34,12 +33,6 @@ namespace NeedForSpeed.Models
         {
             get { return prizePool; }
             set { prizePool = value; }
-        }
-
-        public int ID
-        {
-            get { return id; }
-            set { id = value; }
         }
     }
 }

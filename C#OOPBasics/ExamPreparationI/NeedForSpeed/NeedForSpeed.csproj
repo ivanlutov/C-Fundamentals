@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarManager.cs" />
+    <Compile Include="Factories\CarFactory.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Cars\PerformanceCar.cs" />
     <Compile Include="Models\Cars\ShowCar.cs" />
