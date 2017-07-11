@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
-
-namespace NeedForSpeed.Models
+public class Garage
 {
-    public class Garage
-    {
-        public Dictionary<int, Car> parkedCars;
+    private Dictionary<int, Car> parkedCars;
 
-        public Garage()
-        {
-            this.parkedCars = new Dictionary<int, Car>();
-        }
+    public Garage()
+    {
+        this.ParkedCars = new Dictionary<int, Car>();
+    }
+
+    public Dictionary<int, Car> ParkedCars
+    {
+        get { return parkedCars; }
+        set { parkedCars = value; }
     }
 }

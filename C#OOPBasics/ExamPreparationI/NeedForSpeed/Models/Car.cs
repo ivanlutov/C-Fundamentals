@@ -1,5 +1,4 @@
 ﻿using System;
-
 public abstract class Car
 {
     private string brand;

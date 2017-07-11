@@ -1,183 +1,176 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NeedForSpeed.Factories;
-using NeedForSpeed.Models;
-using NeedForSpeed.Models.Cars;
-using NeedForSpeed.Models.Races;
-
-namespace NeedForSpeed
+public class CarManager
 {
-    public class CarManager
+    private Dictionary<int, Car> cars;
+    private Dictionary<int, Race> races;
+    private Garage garage;
+    private CarFactory factory;
+
+    public CarManager()
     {
-        private Dictionary<int, Car> cars;
-        private Dictionary<int, Race> races;
-        private Garage garage;
-        private CarFactory factory;
+        this.cars = new Dictionary<int, Car>();
+        this.races = new Dictionary<int, Race>();
+        this.garage = new Garage();
+        this.factory = new CarFactory();
+    }
 
-        public CarManager()
+    public void Register(int id, string type, string brand, string model, int yearOfProduction, int horsepower,
+        int acceleration, int suspension, int durability)
+    {
+        var car = factory.CreateCar(type, brand, model, yearOfProduction, horsepower, acceleration, suspension, durability);
+        cars[id] = car;
+    }
+
+    public string Check(int id)
+    {
+        var currentCar = cars[id];
+        return currentCar.ToString();
+    }
+
+    public void Open(int id, string type, int length, string route, int prizePool)
+    {
+        Race race = null;
+        if (type == "Casual")
         {
-            this.cars = new Dictionary<int, Car>();
-            this.races = new Dictionary<int, Race>();
-            this.garage = new Garage();
-            this.factory = new CarFactory();
+            race = new CasualRace(length, route, prizePool);
+        }
+        else if (type == "Drag")
+        {
+            race = new DragRace(length, route, prizePool);
+        }
+        else if (type == "Drift")
+        {
+            race = new DriftRace(length, route, prizePool);
         }
 
-        public void Register(int id, string type, string brand, string model, int yearOfProduction, int horsepower,
-            int acceleration, int suspension, int durability)
+        races[id] = race;
+    }
+
+    public void Participate(int carId, int raceId)
+    {
+        var car = cars[carId];
+        var race = races[raceId];
+
+        if (!garage.ParkedCars.ContainsKey(carId))
         {
-            var car = factory.CreateCar(type, brand, model, yearOfProduction, horsepower, acceleration, suspension, durability);
-            cars[id] = car;
+            race.Participants[carId] = car;
+        }
+    }
+
+    public string Start(int id)
+    {
+        var race = races[id];
+        var typeRace = race.GetType().Name;
+
+        if (race.Participants.Count == 0)
+        {
+            return $"Cannot start the race with zero participants.";
         }
 
-        public string Check(int id)
+        var winners = new List<Car>();
+        if (typeRace == "CasualRace")
         {
-            var currentCar = cars[id];
-            return currentCar.ToString();
+            winners = race.Participants.Values.OrderByDescending(c => c.GetOverallPerformance()).Take(3).ToList();
+        }
+        else if (typeRace == "DragRace")
+        {
+            winners = race.Participants.Values.OrderByDescending(c => c.GetEnginePerformance()).Take(3).ToList();
+        }
+        else if (typeRace == "DriftRace")
+        {
+            winners = race.Participants.Values.OrderByDescending(c => c.GetSuspensionPerformance()).Take(3).ToList();
         }
 
-        public void Open(int id, string type, int length, string route, int prizePool)
+        var result = $"{race.Route} - {race.Length}";
+        int counter = 1;
+        var pp = 0;
+        var money = 0;
+
+        foreach (var winner in winners)
         {
-            Race race = null;
-            if (type == "Casual")
-            {
-                race = new CasualRace(length, route, prizePool);
-            }
-            else if (type == "Drag")
-            {
-                race = new DragRace(length, route, prizePool);
-            }
-            else if (type == "Drift")
-            {
-                race = new DriftRace(length, route, prizePool);
-            }
+            result += Environment.NewLine;
 
-            races[id] = race;
-        }
-
-        public void Participate(int carId, int raceId)
-        {
-            var car = cars[carId];
-            var race = races[raceId];
-
-            if (!garage.parkedCars.ContainsKey(carId))
-            {
-                race.participants[carId] = car;
-            }
-        }
-
-        public string Start(int id)
-        {
-            var race = races[id];
-            var typeRace = race.GetType().Name;
-
-            if (race.participants.Count == 0)
-            {
-                return $"Cannot start the race with zero participants.";
-            }
-
-            var winners = new List<Car>();
             if (typeRace == "CasualRace")
             {
-                winners = race.participants.Values.OrderByDescending(c => c.GetOverallPerformance()).Take(3).ToList();
+                pp = winner.GetOverallPerformance();
             }
             else if (typeRace == "DragRace")
             {
-                winners = race.participants.Values.OrderByDescending(c => c.GetEnginePerformance()).Take(3).ToList();
+                pp = winner.GetEnginePerformance();
             }
             else if (typeRace == "DriftRace")
             {
-                winners = race.participants.Values.OrderByDescending(c => c.GetSuspensionPerformance()).Take(3).ToList();
+                pp = winner.GetSuspensionPerformance();
             }
-
-            var result = $"{race.Route} - {race.Length}";
-            int counter = 1;
-            var pp = 0;
-            var money = 0;
-
-            foreach (var winner in winners)
+            if (counter == 1)
             {
-                result += Environment.NewLine;
-
-                if (typeRace == "CasualRace")
-                {
-                    pp = winner.GetOverallPerformance();
-                }
-                else if (typeRace == "DragRace")
-                {
-                    pp = winner.GetEnginePerformance();
-                }
-                else if (typeRace == "DriftRace")
-                {
-                    pp = winner.GetSuspensionPerformance();
-                }
-                if (counter == 1)
-                {
-                    money = (race.PrizePool * 50) / 100;
-                }
-                else if (counter == 2)
-                {
-                    money = (race.PrizePool * 30) / 100;
-                }
-                else if (counter == 3)
-                {
-                    money = (race.PrizePool * 20) / 100;
-                }
-
-                result += ($"{counter}. {winner.Brand} {winner.Model} {pp}PP - ${money}");
-                counter++;
+                money = (race.PrizePool * 50) / 100;
+            }
+            else if (counter == 2)
+            {
+                money = (race.PrizePool * 30) / 100;
+            }
+            else if (counter == 3)
+            {
+                money = (race.PrizePool * 20) / 100;
             }
 
-            return result;
+            result += ($"{counter}. {winner.Brand} {winner.Model} {pp}PP - ${money}");
+            counter++;
         }
 
-        public void Park(int id)
+        this.races.Remove(id);
+        return result;
+    }
+
+    public void Park(int id)
+    {
+        var car = cars[id];
+        bool carIsInRace = false;
+
+        foreach (var race in this.races.Values)
         {
-            var car = cars[id];
-            bool carIsInRace = false;
-
-            foreach (var race in this.races.Values)
+            foreach (var c in race.Participants)
             {
-                foreach (var c in race.participants)
+                if (c.Key == id)
                 {
-                    if (c.Key == id)
-                    {
-                        carIsInRace = true;
-                        break;
-                    }
+                    carIsInRace = true;
+                    break;
                 }
-            }
-
-            if (!carIsInRace)
-            {
-                garage.parkedCars[id] = car;
             }
         }
 
-        public void Unpark(int id)
+        if (!carIsInRace)
         {
-            if (garage.parkedCars.ContainsKey(id))
-            {
-                garage.parkedCars.Remove(id);
-            }
+            garage.ParkedCars[id] = car;
         }
+    }
 
-        public void Tune(int tuneIndex, string addOn)
+    public void Unpark(int id)
+    {
+        if (garage.ParkedCars.ContainsKey(id))
         {
-            foreach (var car in this.garage.parkedCars)
+            garage.ParkedCars.Remove(id);
+        }
+    }
+
+    public void Tune(int tuneIndex, string addOn)
+    {
+        foreach (var car in this.garage.ParkedCars)
+        {
+            car.Value.Horsepower += tuneIndex;
+            car.Value.Suspension += tuneIndex / 2;
+            if (car.Value.GetType().Name == "ShowCar")
             {
-                car.Value.Horsepower += tuneIndex;
-                car.Value.Suspension += tuneIndex / 2;
-                if (car.Value.GetType().Name == "ShowCar")
-                {
-                    ShowCar show = (ShowCar)car.Value;
-                    show.Stars += tuneIndex;
-                }
-                else
-                {
-                    PerformanceCar perf = (PerformanceCar)car.Value;
-                    perf.addOns.Add(addOn);
-                }
+                ShowCar show = (ShowCar)car.Value;
+                show.Stars += tuneIndex;
+            }
+            else
+            {
+                PerformanceCar perf = (PerformanceCar)car.Value;
+                perf.AddOns.Add(addOn);
             }
         }
     }
