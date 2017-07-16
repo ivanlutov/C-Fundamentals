@@ -6,18 +6,18 @@ public class HarvesterFactory
     {
         var type = arguments[0];
         var id = arguments[1];
-        var areOutput = double.Parse(arguments[2]);
+        var oreOutput = double.Parse(arguments[2]);
         var energyRequerement = double.Parse(arguments[3]);
 
         Harvester harvester = null;
         if (type == "Sonic")
         {
             var sonicFactor = int.Parse(arguments[4]);
-            harvester = new SonicHarvester(id, areOutput, energyRequerement, sonicFactor);
+            harvester = new SonicHarvester(id, oreOutput, energyRequerement, sonicFactor);
         }
-        else if(type == "Hammer")
+        else if (type == "Hammer")
         {
-            harvester = new HammerHarvester(id, areOutput, energyRequerement);
+            harvester = new HammerHarvester(id, oreOutput, energyRequerement);
         }
 
         return harvester;

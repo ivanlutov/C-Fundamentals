@@ -1,5 +1,4 @@
-﻿
-public class SonicHarvester : Harvester
+﻿public class SonicHarvester : Harvester
 {
     private int sonicFactor;
 

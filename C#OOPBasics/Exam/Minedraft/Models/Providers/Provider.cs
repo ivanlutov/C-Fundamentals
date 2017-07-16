@@ -14,7 +14,7 @@ public abstract class Provider : Workers
 
     public double EnergyOutput
     {
-        get { return energyOutput; }
+        get { return this.energyOutput; }
         protected set
         {
             if (value < 0 || value >= 10000)
@@ -22,9 +22,10 @@ public abstract class Provider : Workers
                 throw new ArgumentException($"Provider is not registered, because of it's EnergyOutput");
             }
 
-            energyOutput = value;
+            this.energyOutput = value;
         }
     }
+
     protected string Id
     {
         get { return id; }

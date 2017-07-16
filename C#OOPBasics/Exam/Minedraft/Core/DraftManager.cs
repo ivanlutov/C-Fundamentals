@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +23,6 @@ public class DraftManager
         this.totalEnergyStored = 0;
         this.mode = "Full";
     }
-
 
     public string RegisterHarvester(List<string> arguments)
     {
@@ -65,6 +63,7 @@ public class DraftManager
 
         return msg;
     }
+
     public string Day()
     {
         double dayEnergy = 0;
@@ -85,7 +84,7 @@ public class DraftManager
             }
             else if (mode == "Half")
             {
-                dayOre += harvesters.Values.Sum(h => (h.OreOutput * 50) /100);
+                dayOre += harvesters.Values.Sum(h => (h.OreOutput * 50) / 100);
                 totalEnergyStored -= (harvestNeededEnergyForDay * 60) / 100;
             }
 
@@ -99,6 +98,7 @@ public class DraftManager
 
         return sb.ToString().Trim();
     }
+
     public string Mode(List<string> arguments)
     {
         var modeCommand = arguments[0];
@@ -118,6 +118,7 @@ public class DraftManager
 
         return $"Successfully changed working mode to {modeCommand} Mode";
     }
+
     public string Check(List<string> arguments)
     {
         var id = arguments[0];
@@ -139,6 +140,7 @@ public class DraftManager
 
         return $"No element found with id - {id}";
     }
+
     public string ShutDown()
     {
         var sb = new StringBuilder();

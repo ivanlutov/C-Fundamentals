@@ -1,7 +1,6 @@
-﻿
-public class SolarProvider : Provider
+﻿public class SolarProvider : Provider
 {
-    public SolarProvider(string id, double energyOutput) 
+    public SolarProvider(string id, double energyOutput)
         : base(id, energyOutput)
     {
     }

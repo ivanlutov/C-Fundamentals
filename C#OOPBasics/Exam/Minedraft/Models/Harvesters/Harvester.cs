@@ -16,20 +16,20 @@ public abstract class Harvester : Workers
 
     public double OreOutput
     {
-        get { return oreOutput; }
+        get { return this.oreOutput; }
         protected set
         {
             if (value < 0)
             {
                 throw new ArgumentException($"Harvester is not registered, because of it's OreOutput");
             }
-            oreOutput = value;
+            this.oreOutput = value;
         }
     }
 
     public double EnergyRequirement
     {
-        get { return energyRequirement; }
+        get { return this.energyRequirement; }
         protected set
         {
             if (value < 0 || value > 20000)
@@ -37,13 +37,14 @@ public abstract class Harvester : Workers
                 throw new ArgumentException($"Harvester is not registered, because of it's EnergyRequirement");
             }
 
-            energyRequirement = value;
+            this.energyRequirement = value;
         }
     }
+
     protected string Id
     {
-        get { return id; }
-        set { id = value; }
+        get { return this.id; }
+        set { this.id = value; }
     }
 
     public override string ToString()
@@ -59,7 +60,4 @@ public abstract class Harvester : Workers
 
         return sb.ToString().Trim();
     }
-
-
-    
 }
