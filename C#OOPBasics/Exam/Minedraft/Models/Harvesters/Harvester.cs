@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-public abstract class Harvester : Workers
+public abstract class Harvester : Worker
 {
     private string id;
     private double oreOutput;

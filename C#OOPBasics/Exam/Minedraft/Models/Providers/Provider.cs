@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-public abstract class Provider : Workers
+public abstract class Provider : Worker
 {
     private string id;
     private double energyOutput;
