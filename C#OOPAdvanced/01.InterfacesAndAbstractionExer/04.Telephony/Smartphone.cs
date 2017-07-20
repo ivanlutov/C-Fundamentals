@@ -16,6 +16,7 @@ public class Smartphone : IBrowseable, ICallable
 
         return $"Browsing: {url}!";
     }
+
     public string Call(string phoneNumber)
     {
         var pattern = "^[0-9]*$";

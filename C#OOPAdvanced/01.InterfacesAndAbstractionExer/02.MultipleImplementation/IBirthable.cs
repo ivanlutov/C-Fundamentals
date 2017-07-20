@@ -1,5 +1,4 @@
-﻿
-public interface IBirthable
+﻿public interface IBirthable
 {
     string Birthdate { get; }
 }

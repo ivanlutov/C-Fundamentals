@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace _04.Telephony
 {
-   public  class Startup
+    public class Startup
     {
         public static void Main()
         {

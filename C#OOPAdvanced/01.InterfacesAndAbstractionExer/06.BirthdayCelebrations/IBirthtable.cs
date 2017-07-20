@@ -1,4 +1,4 @@
-﻿    public interface IBirthtable
-    {
-        string Birthdate { get; }
-    }
+﻿public interface IBirthtable
+{
+    string Birthdate { get; }
+}

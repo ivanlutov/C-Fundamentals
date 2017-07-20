@@ -6,6 +6,7 @@
         FirstName = firstName;
         LastName = lastName;
     }
+
     public string ID { get; }
     public string FirstName { get; }
     public string LastName { get; }

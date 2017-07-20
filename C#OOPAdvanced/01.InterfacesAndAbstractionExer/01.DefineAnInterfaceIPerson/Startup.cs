@@ -15,7 +15,6 @@ namespace _01.DefineAnInterfaceIPerson
             IPerson person = new Citizen(name, age);
             Console.WriteLine(person.Name);
             Console.WriteLine(person.Age);
-
         }
     }
 }

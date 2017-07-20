@@ -20,7 +20,7 @@ namespace _05.BorderControl
                     var age = int.Parse(tokens[1]);
                     var id = tokens[2];
 
-                    Citizen citizen = new Citizen(name,age,id);
+                    Citizen citizen = new Citizen(name, age, id);
                     entities.Add(citizen);
                 }
                 else
@@ -28,7 +28,7 @@ namespace _05.BorderControl
                     var model = tokens[0];
                     var id = tokens[1];
 
-                    Robot robot = new Robot(model,id);
+                    Robot robot = new Robot(model, id);
                     entities.Add(robot);
                 }
 
@@ -37,7 +37,7 @@ namespace _05.BorderControl
 
             var fakeIds = Console.ReadLine();
 
-            entities.Where(e=> e.Id.EndsWith(fakeIds)).ToList().ForEach(e => Console.WriteLine(e.Id));
+            entities.Where(e => e.Id.EndsWith(fakeIds)).ToList().ForEach(e => Console.WriteLine(e.Id));
         }
     }
 }

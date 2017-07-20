@@ -17,7 +17,7 @@ public class LeutenantGeneral : Private, ILeutenantGeneral
         sb.AppendLine("Privates:");
         for (int i = 0; i < this.Soldiers.Count; i++)
         {
-            sb.AppendLine($"{this.Soldiers[i].ToString()}");
+            sb.AppendLine($"  {this.Soldiers[i].ToString()}");
         }
 
         return sb.ToString().Trim();

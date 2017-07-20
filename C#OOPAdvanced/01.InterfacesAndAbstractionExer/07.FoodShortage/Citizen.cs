@@ -14,6 +14,7 @@
         this.Birthdate = birthdate;
         this.Food = 0;
     }
+
     public void BuyFood()
     {
         this.Food += 10;

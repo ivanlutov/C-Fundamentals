@@ -6,6 +6,7 @@ public class Spy : Soldier, ISpy
     {
         CodeNumber = codeNumber;
     }
+
     public int CodeNumber { get; }
 
     public override string ToString()

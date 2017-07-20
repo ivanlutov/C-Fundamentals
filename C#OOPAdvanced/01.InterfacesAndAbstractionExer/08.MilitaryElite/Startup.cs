@@ -7,6 +7,7 @@ namespace _08.MilitaryElite
     public class Startup
     {
         private static IList<ISoldier> army;
+
         public static void Main()
         {
             string input;
