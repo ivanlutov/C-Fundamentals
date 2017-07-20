@@ -18,7 +18,7 @@ namespace _10.ExplicitInterfaces
                 var country = personTokens[1];
                 var age = int.Parse(personTokens[2]);
                 IResident currentResident = new Citizen(name, country, age);
-                IPerson currentPerson = new Citizen(name,country,age);
+                IPerson currentPerson = new Citizen(name, country, age);
 
                 residents.Add(currentResident);
                 persons.Add(currentPerson);
@@ -31,7 +31,6 @@ namespace _10.ExplicitInterfaces
                 Console.WriteLine(persons[i].GetName());
                 Console.WriteLine(residents[i].GetName());
             }
-           
         }
     }
 }
