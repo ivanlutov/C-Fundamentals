@@ -1,36 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace _05.GenericCountMethodString
 {
     public class Box<T>
         where T : IComparable<T>
     {
-        private List<T> data;
+        public T Value { get; set; }
 
-        public Box()
+        public Box(T value)
         {
-            this.data = new List<T>();
+            this.Value = value;
         }
 
-        public void Add(T item)
+        public override string ToString()
         {
-            this.data.Add(item);
-        }
-
-        public int CompareTo(T other)
-        {
-            int count = 0;
-
-            for (int i = 0; i < this.data.Count; i++)
-            {
-                if (this.data[i].CompareTo(other) == 1)
-                {
-                    count++;
-                }
-            }
-
-            return count;
+            return $"{this.Value.GetType().FullName}: {this.Value}";
         }
     }
 }

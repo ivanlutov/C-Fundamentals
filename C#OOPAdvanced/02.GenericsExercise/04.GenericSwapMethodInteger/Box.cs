@@ -1,37 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace _04.GenericSwapMethodInteger
+﻿namespace _04.GenericSwapMethodInteger
 {
     public class Box<T>
     {
-        private List<T> data;
+        public T Value { get; set; }
 
-        public Box()
+        public Box(T value)
         {
-            this.data = new List<T>();
-        }
-
-        public void Add(T item)
-        {
-            this.data.Add(item);
-        }
-
-        public void Swap(int firstIndex, int secondIndex)
-        {
-            var firstElement = this.data[firstIndex];
-            var secondElement = this.data[secondIndex];
-            this.data[firstIndex] = secondElement;
-            this.data[secondIndex] = firstElement;
-        }
-
-        public IReadOnlyList<T> GetList()
-        {
-            return this.data;
+            this.Value = value;
         }
 
         public override string ToString()
         {
-            return $"{typeof(T)}:";
+            return $"{this.Value.GetType().FullName}: {this.Value}";
         }
     }
 }

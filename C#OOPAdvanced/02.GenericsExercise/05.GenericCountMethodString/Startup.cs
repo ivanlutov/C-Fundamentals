@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace _05.GenericCountMethodString
 {
@@ -7,18 +9,25 @@ namespace _05.GenericCountMethodString
         public static void Main()
         {
             int n = int.Parse(Console.ReadLine());
+            var boxes = new List<Box<string>>();
 
-            var box = new Box<string>();
             for (int i = 0; i < n; i++)
             {
-                var inputString = Console.ReadLine();
-                box.Add(inputString);
+                var box = new Box<string>(Console.ReadLine());
+                boxes.Add(box);
             }
 
-            var compareString = Console.ReadLine();
+            var comparableElement = Console.ReadLine();
 
-            var result = box.CompareTo(compareString);
-            Console.WriteLine(result);
+            var count = GetCountOfGreatherElements(boxes, comparableElement);
+            Console.WriteLine(count);
+        }
+
+        private static int GetCountOfGreatherElements<T>(List<Box<T>> boxes, T comparableElement)
+            where T : IComparable<T>
+        {
+            var count = boxes.Count(b => b.Value.CompareTo(comparableElement) > 0);
+            return count;
         }
     }
 }

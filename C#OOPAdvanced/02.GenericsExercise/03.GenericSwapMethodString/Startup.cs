@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace _03.GenericSwapMethodString
@@ -8,24 +9,31 @@ namespace _03.GenericSwapMethodString
         public static void Main()
         {
             int n = int.Parse(Console.ReadLine());
+            var boxes = new List<Box<string>>();
 
-            var box = new Box<string>();
             for (int i = 0; i < n; i++)
             {
-                var currentString = Console.ReadLine();
-                box.Add(currentString);
+                var box = new Box<string>(Console.ReadLine());
+                boxes.Add(box);
             }
 
             var indexes = Console.ReadLine().Split().Select(int.Parse).ToArray();
             var firstIndex = indexes[0];
             var secondIndex = indexes[1];
 
-            box.Swap(firstIndex, secondIndex);
+            GenericSwapMethodString(boxes, firstIndex, secondIndex);
 
-            for (int i = 0; i < box.GetList().Count; i++)
+            for (int i = 0; i < boxes.Count(); i++)
             {
-                Console.WriteLine($"{box} {box.GetList()[i]}");
+                Console.WriteLine(boxes[i]);
             }
+        }
+
+        private static void GenericSwapMethodString<T>(List<Box<T>> boxes, int firstIndex, int secondIndex)
+        {
+            Box<T> firstBox = boxes[firstIndex];
+            boxes[firstIndex] = boxes[secondIndex];
+            boxes[secondIndex] = firstBox;
         }
     }
 }
