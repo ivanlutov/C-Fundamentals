@@ -4,7 +4,7 @@ namespace BashSoft.Exceptions
 {
     public class CourseNotFoundException : Exception
     {
-        private const string NotEnrolledInCourse = "Student must be enrolled in a course before you set his mark.";
+        private const string NotEnrolledInCourse = "SoftUniStudent must be enrolled in a course before you set his mark.";
 
         public CourseNotFoundException()
             : base(NotEnrolledInCourse)

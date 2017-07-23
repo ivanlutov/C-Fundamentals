@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using BashSoft.Contracts;
 using BashSoft.Exceptions;
 using BashSoft.Models;
 
 namespace BashSoft
 {
-    public class StudentsRepository
+    public class StudentsRepository : IDatabase
     {
         private Dictionary<string, Dictionary<string, List<int>>> studentsByCourse;
         private bool isDataInitialized;
-        private RepositoryFilter filter;
-        private RepositorySorter sorter;
-        private Dictionary<string, Course> courses;
-        private Dictionary<string, Student> students;
+        private IDataFilter filter;
+        private IDataSorter sorter;
+        private Dictionary<string, ICourse> courses;
+        private Dictionary<string, IStudent> students;
 
-        public StudentsRepository(RepositorySorter sorter, RepositoryFilter filter)
+        public StudentsRepository(IDataSorter sorter, IDataFilter filter)
         {
             this.filter = filter;
             this.sorter = sorter;
@@ -33,8 +34,8 @@ namespace BashSoft
             }
 
             OutputWriter.WriteMessageOnNewLine("Reading data...");
-            this.students = new Dictionary<string, Student>();
-            this.courses = new Dictionary<string, Course>();
+            this.students = new Dictionary<string, IStudent>();
+            this.courses = new Dictionary<string, ICourse>();
             ReadData(fileName);
         }
 
@@ -80,27 +81,27 @@ namespace BashSoft
                                 OutputWriter.DisplayException(ExceptionMessages.InvalidScore);
                                 continue;
                             }
-                            if (scores.Length > Course.NumberOfTasksOnExam)
+                            if (scores.Length > SoftUniCourse.NumberOfTasksOnExam)
                             {
                                 OutputWriter.DisplayException(ExceptionMessages.InvalidNumberOfScores);
                                 continue;
                             }
                             if (!this.students.ContainsKey(userName))
                             {
-                                this.students.Add(userName, new Student(userName));
+                                this.students.Add(userName, new SoftUniStudent(userName));
                             }
                             if (!this.courses.ContainsKey(courseName))
                             {
-                                this.courses.Add(courseName, new Course(courseName));
+                                this.courses.Add(courseName, new SoftUniCourse(courseName));
                             }
 
-                            Course course = this.courses[courseName];
-                            Student student = this.students[userName];
+                            ICourse softUniCourse = this.courses[courseName];
+                            IStudent softUniStudent = this.students[userName];
 
-                            student.EnrollInCourse(course);
-                            student.SetMarkOnCourse(courseName, scores);
+                            softUniStudent.EnrollInCourse(softUniCourse);
+                            softUniStudent.SetMarkOnCourse(courseName, scores);
 
-                            course.EnrollStudent(student);
+                            softUniCourse.EnrollStudent(softUniStudent);
                         }
                         catch (Exception ex)
                         {
@@ -156,7 +157,7 @@ namespace BashSoft
             return false;
         }
 
-        public void GetStudentScoresFromCourse(string courseName, string userName)
+        public void GetStudentMarkInCourse(string courseName, string userName)
         {
             if (IsQueryForStudentPossible(courseName, userName))
             {
@@ -165,14 +166,14 @@ namespace BashSoft
             }
         }
 
-        public void GetAllStudentsFromCourse(string courseName)
+        public void GetStudentsByCourse(string courseName)
         {
             if (IsQueryForCoursePossible(courseName))
             {
                 OutputWriter.WriteMessageOnNewLine($"{courseName}:");
                 foreach (var studentMarksEntry in this.courses[courseName].StudentsByName)
                 {
-                    this.GetStudentScoresFromCourse(courseName, studentMarksEntry.Key);
+                    this.GetStudentMarkInCourse(courseName, studentMarksEntry.Key);
                 }
             }
         }
