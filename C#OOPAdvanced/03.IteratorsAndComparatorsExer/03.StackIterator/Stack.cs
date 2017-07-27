@@ -6,7 +6,7 @@ namespace _03.StackIterator
 {
     public class Stack<T> : IEnumerable<T>
     {
-        private List<T> data;
+        private readonly List<T> data;
 
         public Stack()
         {

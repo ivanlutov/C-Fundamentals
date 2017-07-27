@@ -29,9 +29,14 @@ namespace _05.ComparingObjects
             var numberOfEqualPeople = peoples.Count(people => people.CompareTo(comparePeople) == 0);
             var numberOfNotEqualPeople = peoples.Count - numberOfEqualPeople;
 
-            Console.WriteLine(numberOfEqualPeople < 2
-                ? "No matches"
-                : $"{numberOfEqualPeople} {numberOfNotEqualPeople} {peoples.Count}");
+            if (numberOfEqualPeople < 2)
+            {
+                Console.WriteLine("No matches");
+            }
+            else
+            {
+                Console.WriteLine($"{numberOfEqualPeople} {numberOfNotEqualPeople} {peoples.Count}");
+            }
         }
     }
 }

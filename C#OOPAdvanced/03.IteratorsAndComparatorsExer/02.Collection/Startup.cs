@@ -8,18 +8,9 @@ namespace _02.Collection
         public static void Main()
         {
             var createCmd = Console.ReadLine().Split().ToList();
-
-            ListyIterator<string> listIterator = null;
-            if (createCmd.Count > 1)
-            {
-                var elements = createCmd.Skip(1).ToList();
-                listIterator = new ListyIterator<string>(elements);
-            }
-            else
-            {
-                listIterator = new ListyIterator<string>();
-            }
-
+            var elements = createCmd.Skip(1).ToList();
+            ListyIterator<string> listIterator = new ListyIterator<string>(elements);
+           
             var cmd = Console.ReadLine();
             while (cmd != "END")
             {

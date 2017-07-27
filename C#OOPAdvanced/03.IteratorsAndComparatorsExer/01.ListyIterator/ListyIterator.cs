@@ -5,15 +5,14 @@ namespace _01.ListyIterator
 {
     public class ListyIterator<T>
     {
-        public int CurrentIndex { get; set; }
+        private readonly List<T> data;
 
-        private List<T> data;
-
-        public ListyIterator()
+        public ListyIterator(params T[] elements)
         {
-            this.data = new List<T>();
+            this.data = new List<T>(elements);
             this.CurrentIndex = 0;
         }
+        public int CurrentIndex { get; set; }
 
         public ListyIterator(List<T> collection)
         {
@@ -22,7 +21,7 @@ namespace _01.ListyIterator
 
         public bool Move()
         {
-            if (this.data.Count > CurrentIndex)
+            if (this.data.Count - 1 > CurrentIndex)
             {
                 this.CurrentIndex++;
                 return true;

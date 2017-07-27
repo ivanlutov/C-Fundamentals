@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.CoffeeMachine", "02.CoffeeMachine\02.CoffeeMachine.csproj", "{66EE6E7F-CD9C-41C0-9FAD-E09D90626F24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.WeekDay", "01.WeekDay\01.WeekDay.csproj", "{99B9887B-2A61-4193-840F-4FE58CCA01CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.Attributes", "03.Attributes\03.Attributes.csproj", "{57E64898-92B0-4FFA-8EBD-7B72DE32436B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66EE6E7F-CD9C-41C0-9FAD-E09D90626F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EE6E7F-CD9C-41C0-9FAD-E09D90626F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EE6E7F-CD9C-41C0-9FAD-E09D90626F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EE6E7F-CD9C-41C0-9FAD-E09D90626F24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99B9887B-2A61-4193-840F-4FE58CCA01CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B9887B-2A61-4193-840F-4FE58CCA01CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B9887B-2A61-4193-840F-4FE58CCA01CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B9887B-2A61-4193-840F-4FE58CCA01CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E64898-92B0-4FFA-8EBD-7B72DE32436B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E64898-92B0-4FFA-8EBD-7B72DE32436B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E64898-92B0-4FFA-8EBD-7B72DE32436B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E64898-92B0-4FFA-8EBD-7B72DE32436B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

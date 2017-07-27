@@ -5,7 +5,7 @@ namespace _04.Froggy
 {
     public class Lake<T> : IEnumerable<T>
     {
-        private List<T> data;
+        private readonly List<T> data;
 
         public Lake()
         {

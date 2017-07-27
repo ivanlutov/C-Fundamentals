@@ -9,12 +9,12 @@ namespace _02.Collection
     {
         public int CurrentIndex { get; set; }
 
-        private List<T> data;
+        private readonly List<T> data;
 
-        public ListyIterator()
+        public ListyIterator(params T[] elements)
         {
-            this.data = new List<T>();
             this.CurrentIndex = 0;
+            this.data = new List<T>(elements);
         }
 
         public ListyIterator(List<T> collection)
@@ -24,7 +24,7 @@ namespace _02.Collection
 
         public bool Move()
         {
-            if (this.data.Count > CurrentIndex)
+            if (this.data.Count - 1 > CurrentIndex)
             {
                 this.CurrentIndex++;
                 return true;

@@ -24,7 +24,6 @@ namespace _03.StackIterator
                             stack.Push(int.Parse(element));
                         }
                         break;
-
                     case "Pop":
                         try
                         {
