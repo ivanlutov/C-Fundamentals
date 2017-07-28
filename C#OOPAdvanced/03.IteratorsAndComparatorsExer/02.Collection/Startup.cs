@@ -10,7 +10,7 @@ namespace _02.Collection
             var createCmd = Console.ReadLine().Split().ToList();
             var elements = createCmd.Skip(1).ToList();
             ListyIterator<string> listIterator = new ListyIterator<string>(elements);
-           
+
             var cmd = Console.ReadLine();
             while (cmd != "END")
             {

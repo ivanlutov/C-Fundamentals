@@ -2,16 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace _08.PetClinics
 {
     public class Clinic : IEnumerable<Pet>
     {
         private List<Pet> pets;
-        public string Name { get; set; }
         private readonly int center;
         private int roomsCount;
         private int occupiedRooms;
+
         public Clinic(string name, int roomsCount)
         {
             this.Name = name;
@@ -20,6 +21,8 @@ namespace _08.PetClinics
             this.center = this.RoomsCount / 2;
             this.pets = new List<Pet>(new Pet[this.RoomsCount]);
         }
+
+        public string Name { get; set; }
 
         public int RoomsCount
         {
@@ -42,7 +45,7 @@ namespace _08.PetClinics
             int step = 0;
             int stepsTaken = 0;
             bool goLeft = true;
-           
+
             while (this.pets[currentRoom] != null && step <= this.pets.Count() / 2)
             {
                 if (goLeft)
@@ -76,11 +79,23 @@ namespace _08.PetClinics
 
         public bool Release()
         {
-            foreach (var pet in this.pets)
+            for (int i = this.center; i < this.pets.Count; i++)
             {
-                if (pet != null)
+                if (pets[i] != null)
                 {
-                    this.pets.Remove(pet);
+                    var indexOfPet = this.pets.IndexOf(pets[i]);
+                    this.pets[indexOfPet] = null;
+                    this.occupiedRooms--;
+                    return true;
+                }
+            }
+
+            for (int i = 0; i < this.center; i++)
+            {
+                if (pets[i] != null)
+                {
+                    var indexOfPet = this.pets.IndexOf(pets[i]);
+                    this.pets[indexOfPet] = null;
                     this.occupiedRooms--;
                     return true;
                 }
@@ -98,42 +113,44 @@ namespace _08.PetClinics
 
             return false;
         }
-        public void Print()
+
+        public string Print()
         {
+            var sb = new StringBuilder();
             foreach (var pet in this.pets)
             {
                 if (pet != null)
                 {
-                    Console.WriteLine(pet);
+                    sb.AppendLine(pet.ToString());
                 }
                 else
                 {
-                    Console.WriteLine("Room empty");
+                    sb.AppendLine("Room empty");
                 }
             }
+
+            return sb.ToString().Trim();
         }
 
-        public void Print(int index)
+        public string Print(int index)
         {
-            var pet = this.pets[index];
+            var sb = new StringBuilder();
+            var pet = this.pets[index - 1];
             if (pet != null)
             {
-                Console.WriteLine(pet);
+                sb.AppendLine(pet.ToString());
             }
             else
             {
-                Console.WriteLine("Room empty");
+                sb.AppendLine("Room empty");
             }
+
+            return sb.ToString().Trim();
         }
 
         public IEnumerator<Pet> GetEnumerator()
         {
-            for (int i = this.center; i < this.pets.Count; i++)
-            {
-                yield return this.pets[i];
-            }
-
-            for (int i = 0; i < this.center; i++)
+            for (int i = 0; i < this.pets.Count; i++)
             {
                 yield return this.pets[i];
             }
@@ -145,4 +162,3 @@ namespace _08.PetClinics
         }
     }
 }
-

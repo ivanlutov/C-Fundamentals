@@ -19,9 +19,11 @@ namespace _01.ListyIterator
                     case "HasNext":
                         Console.WriteLine(listIterator.HasNext());
                         break;
+
                     case "Move":
                         Console.WriteLine(listIterator.Move());
                         break;
+
                     case "Print":
                         try
                         {

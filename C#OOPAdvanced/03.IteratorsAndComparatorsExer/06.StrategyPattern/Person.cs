@@ -7,6 +7,7 @@
             Name = name;
             Age = age;
         }
+
         public string Name { get; set; }
 
         public int Age { get; set; }

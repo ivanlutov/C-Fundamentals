@@ -20,6 +20,7 @@ namespace _09.LinkedListTraversal
                         var elementToAdd = int.Parse(tokens[1]);
                         linkedList.Add(elementToAdd);
                         break;
+
                     case "Remove":
                         var elementToRemove = int.Parse(tokens[1]);
                         linkedList.Remove(elementToRemove);

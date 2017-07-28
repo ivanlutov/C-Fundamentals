@@ -12,6 +12,7 @@ namespace _01.ListyIterator
             this.data = new List<T>(elements);
             this.CurrentIndex = 0;
         }
+
         public int CurrentIndex { get; set; }
 
         public ListyIterator(List<T> collection)
