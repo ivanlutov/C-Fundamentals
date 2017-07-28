@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 public class GemFactory
 {
@@ -16,9 +15,11 @@ public class GemFactory
             case "Ruby":
                 gem = new RubyGem(clarity);
                 break;
+
             case "Emerald":
                 gem = new EmeraldGem(clarity);
                 break;
+
             case "Amethyst":
                 gem = new AmethystGem(clarity);
                 break;

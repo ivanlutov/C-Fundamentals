@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Text;
+using System.Collections.Generic;
 
 namespace _09.TrafficLights
 {
@@ -7,31 +7,23 @@ namespace _09.TrafficLights
     {
         public static void Main()
         {
-            var input = Console.ReadLine().Split();
-            var n = int.Parse(Console.ReadLine());
-            int count = (int)(Light)Enum.Parse(typeof(Light), input[2]);
-            var sb = new StringBuilder();
+            string[] initialLights = Console.ReadLine().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            List<ITrafficLight> trafficLights = new List<ITrafficLight>();
+
+            foreach (var light in initialLights)
+            {
+                trafficLights.Add(new TrafficLight(light));
+            }
+
+            int n = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (count + 1 == 3)
-                    {
-                        count = 0;
-                    }
-                }
+                trafficLights.ForEach(l => l.Cycle());
+
+                Console.WriteLine(string.Join(" ", trafficLights));
             }
-
-            //for (int i = 0; i < n; i++)
-            //{
-            //    foreach (var value in values)
-            //    {
-            //        Console.Write(value);
-            //    }
-
-            //    Console.WriteLine();
-            //}
         }
     }
 }

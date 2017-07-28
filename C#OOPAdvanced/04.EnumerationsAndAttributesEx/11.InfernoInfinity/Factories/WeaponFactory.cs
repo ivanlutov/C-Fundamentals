@@ -17,9 +17,11 @@ public class WeaponFactory
             case "Axe":
                 weapon = new Axe(rarity, weaponName);
                 break;
+
             case "Sword":
                 weapon = new Sword(rarity, weaponName);
                 break;
+
             case "Knife":
                 weapon = new Knife(rarity, weaponName);
                 break;

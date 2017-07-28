@@ -14,13 +14,21 @@ public abstract class Weapon
         this.sockets = new List<Gem>(new Gem[numberOfSockets]);
         this.SetRarity();
     }
+
     public Rarity Rarity;
+
     public string Name { get; set; }
+
     public int Strength { get; set; }
+
     public int Agility { get; set; }
+
     public int Vitality { get; set; }
+
     public int MinDamage { get; set; }
+
     public int MaxDamage { get; set; }
+
     public int NumberOfSockets { get; set; }
 
     private void SetRarity()
@@ -42,7 +50,6 @@ public abstract class Weapon
     {
         if (this.NumberOfSockets - 1 >= index && this.sockets[index] != null)
         {
-            var gem = this.sockets[index];
             this.sockets[index] = null;
         }
     }
@@ -51,7 +58,7 @@ public abstract class Weapon
     {
         foreach (var gem in this.sockets)
         {
-            if (gem!= null)
+            if (gem != null)
             {
                 this.Strength += gem.Strength;
                 this.Agility += gem.Agility;
@@ -61,6 +68,7 @@ public abstract class Weapon
             }
         }
     }
+
     public override string ToString()
     {
         return $"{this.Name}: {this.MinDamage}-{this.MaxDamage} Damage, +{this.Strength} Strength, +{this.Agility} Agility, +{this.Vitality} Vitality";

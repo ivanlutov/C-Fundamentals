@@ -4,7 +4,7 @@
     private const int Agility = 8;
     private const int Vitality = 4;
 
-    public AmethystGem(Clarity clarity) 
+    public AmethystGem(Clarity clarity)
         : base(clarity, Strength, Agility, Vitality)
     {
     }

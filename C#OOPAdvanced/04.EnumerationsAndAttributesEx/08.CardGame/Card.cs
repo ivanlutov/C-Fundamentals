@@ -1,4 +1,5 @@
 ﻿using System;
+
 public class Card : IComparable<Card>
 {
     private Rank rank;

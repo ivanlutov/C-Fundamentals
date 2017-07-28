@@ -1,5 +1,4 @@
-﻿
-public class RubyGem : Gem
+﻿public class RubyGem : Gem
 {
     private const int Strength = 7;
     private const int Agility = 2;

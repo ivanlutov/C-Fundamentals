@@ -4,8 +4,8 @@
     {
         public static void Main()
         {
-            var manager = new CommandInterpreter();
-            manager.Run();
+            var commandInterpreter = new CommandInterpreter();
+            commandInterpreter.Run();
         }
     }
 }

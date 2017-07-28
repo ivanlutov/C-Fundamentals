@@ -3,7 +3,8 @@ using System.Linq;
 
 public class CommandInterpreter
 {
-    readonly WeaponManager weaponManager = new WeaponManager(); 
+    private readonly WeaponManager weaponManager = new WeaponManager();
+
     public void Run()
     {
         bool isRunning = true;
@@ -20,15 +21,19 @@ public class CommandInterpreter
                 case "Create":
                     weaponManager.Create(arguments);
                     break;
+
                 case "Add":
                     weaponManager.Add(arguments);
                     break;
+
                 case "Remove":
                     weaponManager.Remove(arguments);
                     break;
+
                 case "Print":
                     Console.WriteLine(weaponManager.Print(arguments[0]));
                     break;
+
                 case "END":
                     isRunning = false;
                     break;

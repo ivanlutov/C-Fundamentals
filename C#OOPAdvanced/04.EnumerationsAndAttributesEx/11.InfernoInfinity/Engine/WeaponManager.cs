@@ -3,9 +3,10 @@ using System.Linq;
 
 public class WeaponManager
 {
-    private List<Weapon> weapons;
-    WeaponFactory weaponFactory;
-    GemFactory gemFactory;
+    private readonly List<Weapon> weapons;
+    private readonly WeaponFactory weaponFactory;
+    private readonly GemFactory gemFactory;
+
     public WeaponManager()
     {
         this.weapons = new List<Weapon>();
@@ -41,6 +42,6 @@ public class WeaponManager
     {
         var printWeapon = weapons.FirstOrDefault(w => w.Name == name);
         printWeapon.CalculateStats();
-        return $"{printWeapon.ToString()}";
+        return $"{printWeapon}";
     }
 }

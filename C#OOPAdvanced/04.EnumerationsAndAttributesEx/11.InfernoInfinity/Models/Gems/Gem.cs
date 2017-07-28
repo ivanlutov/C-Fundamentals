@@ -11,14 +11,12 @@
 
     public Clarity clarity;
     public int Strength { get; set; }
-
     public int Agility { get; set; }
-
     public int Vitality { get; set; }
 
     private void SetClarity()
     {
-        var statClarity = (int) clarity;
+        var statClarity = (int)clarity;
         this.Strength += statClarity;
         this.Agility += statClarity;
         this.Vitality += statClarity;
