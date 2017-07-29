@@ -3,9 +3,9 @@ using System.Linq;
 
 public class CommandInterpreter
 {
-    private readonly WeaponManager weaponManager = new WeaponManager();
+    private readonly Repository repository = new Repository();
 
-    public void Run()
+    public void StartReadingCommands()
     {
         bool isRunning = true;
 
@@ -19,19 +19,19 @@ public class CommandInterpreter
             switch (cmd)
             {
                 case "Create":
-                    weaponManager.Create(arguments);
+                    repository.Create(arguments);
                     break;
 
                 case "Add":
-                    weaponManager.Add(arguments);
+                    repository.Add(arguments);
                     break;
 
                 case "Remove":
-                    weaponManager.Remove(arguments);
+                    repository.Remove(arguments);
                     break;
 
                 case "Print":
-                    Console.WriteLine(weaponManager.Print(arguments[0]));
+                    Console.WriteLine(repository.Print(arguments[0]));
                     break;
 
                 case "END":

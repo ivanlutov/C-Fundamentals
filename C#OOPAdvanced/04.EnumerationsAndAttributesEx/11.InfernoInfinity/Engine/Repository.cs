@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public class WeaponManager
+public class Repository
 {
     private readonly List<Weapon> weapons;
     private readonly WeaponFactory weaponFactory;
     private readonly GemFactory gemFactory;
 
-    public WeaponManager()
+    public Repository()
     {
         this.weapons = new List<Weapon>();
         this.weaponFactory = new WeaponFactory();

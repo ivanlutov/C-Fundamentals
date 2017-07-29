@@ -5,7 +5,7 @@
         public static void Main()
         {
             var commandInterpreter = new CommandInterpreter();
-            commandInterpreter.Run();
+            commandInterpreter.StartReadingCommands();
         }
     }
 }
