@@ -8,6 +8,7 @@ public class Database : IDatabase
     private readonly IList<int> data;
     private readonly int[] firstElements;
     private int currentElement;
+
     public Database(params int[] elements)
     {
         this.data = new int[DefaultCapacity];
@@ -20,6 +21,11 @@ public class Database : IDatabase
     {
         get { return this.currentElement; }
         set { this.currentElement = value; }
+    }
+
+    public int Count()
+    {
+        return this.CurrentElement;
     }
 
     private void SetData()
@@ -40,6 +46,7 @@ public class Database : IDatabase
             CurrentElement++;
         }
     }
+
     public void Add(int element)
     {
         if (this.CurrentElement == DefaultCapacity)
@@ -68,10 +75,5 @@ public class Database : IDatabase
         Array.Copy(this.data.ToArray(), 0, temp, 0, currentElement);
 
         return temp;
-    }
-
-    public int Count()
-    {
-        return this.CurrentElement;
     }
 }

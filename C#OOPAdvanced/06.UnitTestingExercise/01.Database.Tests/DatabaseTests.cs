@@ -1,6 +1,5 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 
 [TestFixture]
 public class DatabaseTests
@@ -121,7 +120,7 @@ public class DatabaseTests
         database.Remove();
         database.Remove();
 
-        CollectionAssert.AreEqual(new int[] { 1, 2, 3 }, database.Fetch().ToArray());
+        CollectionAssert.AreEqual(new int[] { 1, 2, 3 }, database.Fetch());
     }
 
     [Test]
