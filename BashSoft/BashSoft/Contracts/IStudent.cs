@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BashSoft.Models;
 
 namespace BashSoft.Contracts
 {
-    public interface IStudent
+    public interface IStudent : IComparable<IStudent>
     {
         string UserName { get; }
         IReadOnlyDictionary<string, ICourse> EnrolledCourses { get; }

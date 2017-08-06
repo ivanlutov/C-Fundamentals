@@ -39,45 +39,30 @@ namespace BashSoft
             {
                 case "open":
                     return new OpenFileCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "mkdir":
                     return new MakeDirectoryCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "ls":
                     return new TraverseFoldersCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "cmp":
                     return new CompareFilesCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "cdRel":
                     return new ChangeRelativePathCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "cdAbs":
                     return new ChangeAbsolutePathCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "readDb":
                     return new ReadDatabaseCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "help":
                     return new GetHelpCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "show":
                     return new ShowCourseCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "filter":
                     return new PrintFilteredStudentsCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "order":
                     return new PrintOrderedStudentsCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-
                 case "dropdb":
                     return new DropDatabaseCommand(input, data, this.judge, this.repository, this.inputOutputManager);
-                //case "decOrder":
-                //    break;
-                //case "download":
-                //    break;
-                //case "downloadAsynch":
-                //    break;
+                case "display":
+                    return  new DisplayCommand(input, data, this.judge, this.repository, this.inputOutputManager);
                 default:
                     throw new InvalidCommandException(input);
             }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using BashSoft.Contracts;
+using BashSoft.DataStructures;
 using BashSoft.Exceptions;
 using BashSoft.Models;
 
@@ -76,20 +77,24 @@ namespace BashSoft
                             int[] scores = scoresStr.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                                 .Select(int.Parse)
                                 .ToArray();
+
                             if (scores.Any(x => x > 100 || x < 0))
                             {
                                 OutputWriter.DisplayException(ExceptionMessages.InvalidScore);
                                 continue;
                             }
+
                             if (scores.Length > SoftUniCourse.NumberOfTasksOnExam)
                             {
                                 OutputWriter.DisplayException(ExceptionMessages.InvalidNumberOfScores);
                                 continue;
                             }
+
                             if (!this.students.ContainsKey(userName))
                             {
                                 this.students.Add(userName, new SoftUniStudent(userName));
                             }
+
                             if (!this.courses.ContainsKey(courseName))
                             {
                                 this.courses.Add(courseName, new SoftUniCourse(courseName));
@@ -176,6 +181,22 @@ namespace BashSoft
                     this.GetStudentMarkInCourse(courseName, studentMarksEntry.Key);
                 }
             }
+        }
+
+        public ISimpleOrderedBag<ICourse> GetAllCoursesSorted(IComparer<ICourse> cmp)
+        {
+            SimpleSortedList<ICourse> sortedCourses = new SimpleSortedList<ICourse>(cmp);
+            sortedCourses.AddAll(this.courses.Values);
+
+            return sortedCourses;
+        }
+
+        public ISimpleOrderedBag<IStudent> GetAllStudentsSorted(IComparer<IStudent> cmp)
+        {
+            SimpleSortedList<IStudent> sortedStudents = new SimpleSortedList<IStudent>(cmp);
+            sortedStudents.AddAll(this.students.Values);
+
+            return sortedStudents;
         }
 
         public void FilterAndTake(string courseName, string givenFilter, int? studentsToTake = null)
