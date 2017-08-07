@@ -1,12 +1,15 @@
 ﻿using System;
+using _03BarracksFactory.Attributes;
 using _03BarracksFactory.Contracts;
 
 namespace _03BarracksFactory.Core.Commands
 {
     public class Retire : Command
     {
-        public Retire(string[] data, IRepository repository, IUnitFactory unitFactory) 
-            : base(data, repository, unitFactory)
+        [Inject]
+        private IRepository repository;
+        public Retire(string[] data)
+            : base(data)
         {
         }
 
@@ -16,7 +19,7 @@ namespace _03BarracksFactory.Core.Commands
             var unitType = this.Data[1];
             try
             {
-                this.Repository.RemoveUnit(unitType);
+                this.repository.RemoveUnit(unitType);
                 result = $"{unitType} retired!";
             }
             catch (InvalidOperationException e)
