@@ -1,6 +1,6 @@
 ﻿namespace _05.Security_Door
 {
-    public class Program
+    public class Startup
     {
         public static void Main() 
         {

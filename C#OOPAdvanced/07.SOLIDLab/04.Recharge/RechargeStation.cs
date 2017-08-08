@@ -5,6 +5,7 @@
         public void Recharge(IRechargeable rechargeable)
         {
             rechargeable.Recharge();
+
         }
     }
 }

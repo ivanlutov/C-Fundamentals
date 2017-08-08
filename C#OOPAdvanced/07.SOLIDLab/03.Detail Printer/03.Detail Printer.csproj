@@ -45,7 +45,7 @@
     <Compile Include="DetailsPrinter.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Manager.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

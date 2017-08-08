@@ -1,10 +1,9 @@
-﻿namespace _03.Detail_Printer
+﻿namespace _02.Graphic_Editor
 {
-    public class Program
+    public class Startup
     {
         public static void Main()
         {
-          
         }
     }
 }
