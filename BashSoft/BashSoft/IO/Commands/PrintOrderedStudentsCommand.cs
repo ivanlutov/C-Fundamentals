@@ -3,10 +3,15 @@ using BashSoft.Exceptions;
 
 namespace BashSoft.Commands
 {
+    using BashSoft.Attributes;
+
+    [Alias("order")]
     public class PrintOrderedStudentsCommand : Command
     {
-        public PrintOrderedStudentsCommand(string input, string[] data, IContentComparer judge, IDatabase repository, IDirectoryManager inputOutputManager)
-            : base(input, data, judge, repository, inputOutputManager)
+        [Inject]
+        private IDatabase repository;
+        public PrintOrderedStudentsCommand(string input, string[] data)
+            : base(input, data)
         {
         }
 
@@ -31,7 +36,7 @@ namespace BashSoft.Commands
             {
                 if (takeQuantity == "all")
                 {
-                    this.Repository.OrderAndTake(courseName, orderType);
+                    this.repository.OrderAndTake(courseName, orderType);
                 }
                 else
                 {
@@ -39,7 +44,7 @@ namespace BashSoft.Commands
                     bool hasParsed = int.TryParse(takeQuantity, out studentsToTake);
                     if (hasParsed)
                     {
-                        this.Repository.OrderAndTake(courseName, orderType, studentsToTake);
+                        this.repository.OrderAndTake(courseName, orderType, studentsToTake);
                     }
                     else
                     {

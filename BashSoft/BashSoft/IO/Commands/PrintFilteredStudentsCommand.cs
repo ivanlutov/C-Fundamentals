@@ -3,10 +3,15 @@ using BashSoft.Exceptions;
 
 namespace BashSoft.Commands
 {
+    using BashSoft.Attributes;
+
+    [Alias("filter")]
     public class PrintFilteredStudentsCommand : Command
     {
-        public PrintFilteredStudentsCommand(string input, string[] data, IContentComparer judge, IDatabase repository, IDirectoryManager inputOutputManager)
-            : base(input, data, judge, repository, inputOutputManager)
+        [Inject]
+        private IDatabase repository;
+        public PrintFilteredStudentsCommand(string input, string[] data)
+            : base(input, data)
         {
         }
 
@@ -32,7 +37,7 @@ namespace BashSoft.Commands
             {
                 if (takeQuantity == "all")
                 {
-                    this.Repository.FilterAndTake(courseName, filter);
+                    this.repository.FilterAndTake(courseName, filter);
                 }
                 else
                 {
@@ -40,7 +45,7 @@ namespace BashSoft.Commands
                     bool hasParsed = int.TryParse(takeQuantity, out studentsToTake);
                     if (hasParsed)
                     {
-                        this.Repository.FilterAndTake(courseName, filter, studentsToTake);
+                        this.repository.FilterAndTake(courseName, filter, studentsToTake);
                     }
                     else
                     {

@@ -47,8 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppEntryPoint.cs" />
+    <Compile Include="Attributes\InjectAttribute.cs" />
     <Compile Include="Contracts\IAttacker.cs" />
-    <Compile Include="Contracts\ICommandInterpreter.cs" />
     <Compile Include="Contracts\IDestroyable.cs" />
     <Compile Include="Contracts\IExecutable.cs" />
     <Compile Include="Contracts\IInterpreter.cs" />
@@ -58,7 +58,7 @@
     <Compile Include="Contracts\IUnitFactory.cs" />
     <Compile Include="Core\Commands\Add.cs" />
     <Compile Include="Core\Commands\Command.cs" />
-    <Compile Include="Core\Commands\CommandInterpreter.cs" />
+    <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\Commands\Fight.cs" />
     <Compile Include="Core\Commands\Report.cs" />
     <Compile Include="Core\Commands\Retire.cs" />

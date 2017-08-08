@@ -4,10 +4,13 @@ using BashSoft.Exceptions;
 
 namespace BashSoft.Commands
 {
+    using BashSoft.Attributes;
+
+    [Alias("open")]
     public class OpenFileCommand : Command
     {
-        public OpenFileCommand(string input, string[] data, IContentComparer judge, IDatabase repository, IDirectoryManager inputOutputManager)
-            : base(input, data, judge, repository, inputOutputManager)
+        public OpenFileCommand(string input, string[] data)
+            : base(input, data)
         {
         }
 

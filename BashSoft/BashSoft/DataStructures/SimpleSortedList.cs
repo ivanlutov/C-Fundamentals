@@ -10,7 +10,6 @@ namespace BashSoft.DataStructures
     {
         private const int DefaultSize = 16;
 
-        private T[] innerCollection;
         private int size;
         private IComparer<T> comparison;
 
@@ -33,8 +32,9 @@ namespace BashSoft.DataStructures
         public SimpleSortedList()
             : this(Comparer<T>.Create((x, y) => x.CompareTo(y)), DefaultSize)
         {
-            
+
         }
+        protected T[] InnerCollection { get; private set; }
 
         private void InitializeInnerCollection(int capacity)
         {
@@ -43,55 +43,104 @@ namespace BashSoft.DataStructures
                 throw new ArgumentException("Capacity cannot be negative!");
             }
 
-            this.innerCollection = new T[capacity];
+            this.InnerCollection = new T[capacity];
+        }
+
+        public bool Remove(T element)
+        {
+            if (element == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            bool hasBeenRemoved = false;
+            int indexOfRemovedElement = 0;
+            for (int i = 0; i < this.Size; i++)
+            {
+                if (this.InnerCollection[i].Equals(element))
+                {
+                    indexOfRemovedElement = i;
+                    this.InnerCollection[i] = default(T);
+                    this.size--;
+                    hasBeenRemoved = true;
+                    break;
+                }
+            }
+
+            if (hasBeenRemoved)
+            {
+                for (int i = indexOfRemovedElement; i < this.Size - 1; i++)
+                {
+                    this.InnerCollection[i] = this.InnerCollection[i + 1];
+                }
+
+                this.InnerCollection[this.size - 1] = default(T);
+            }
+
+            return hasBeenRemoved;
+        }
+
+        public int Capacity
+        {
+            get { return this.InnerCollection.Length; }
         }
 
         public void Add(T element)
         {
-            if (this.innerCollection.Length == this.size)
+            if (element == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (this.InnerCollection.Length == this.size)
             {
                 this.Resize();
             }
 
-            this.innerCollection[size] = element;
+            this.InnerCollection[size] = element;
             this.size++;
-            Array.Sort(this.innerCollection, size, 0, comparison);
+            Array.Sort(this.InnerCollection, 0, this.size, this.comparison);
         }
 
         private void Resize()
         {
             T[] newCollection = new T[this.size * 2];
-            Array.Copy(innerCollection, newCollection, Size);
-            innerCollection = newCollection;
+            Array.Copy(this.InnerCollection, newCollection, Size);
+            this.InnerCollection = newCollection;
         }
 
         public void AddAll(ICollection<T> collection)
         {
-            if (this.Size + collection.Count >= this.innerCollection.Length)
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (this.Size + collection.Count >= this.InnerCollection.Length)
             {
                 this.MultiResize(collection);
             }
 
             foreach (var element in collection)
             {
-                this.innerCollection[this.Size] = element;
+                this.InnerCollection[this.Size] = element;
                 this.size++;
             }
 
-            Array.Sort(this.innerCollection, 0, this.size, this.comparison);
+            Array.Sort(this.InnerCollection, 0, this.size, this.comparison);
         }
 
         private void MultiResize(ICollection<T> collection)
         {
-            int newSize = this.innerCollection.Length * 2;
+            int newSize = this.InnerCollection.Length * 2;
             while (this.Size + collection.Count >= newSize)
             {
                 newSize *= 2;
             }
 
             T[] newCollection = new T[newSize];
-            Array.Copy(this.innerCollection, newCollection, this.size);
-            this.innerCollection = newCollection;
+            Array.Copy(this.InnerCollection, newCollection, this.size);
+            this.InnerCollection = newCollection;
         }
 
         public int Size
@@ -101,6 +150,11 @@ namespace BashSoft.DataStructures
 
         public string JoinWith(string joiner)
         {
+            if (joiner == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             StringBuilder builder = new StringBuilder();
             foreach (var element in this)
             {
@@ -108,7 +162,7 @@ namespace BashSoft.DataStructures
                 builder.Append(joiner);
             }
 
-            builder.Remove(builder.Length - 1, 1);
+            builder.Remove(builder.Length - joiner.Length, joiner.Length);
             return builder.ToString();
         }
 
@@ -116,7 +170,7 @@ namespace BashSoft.DataStructures
         {
             for (int i = 0; i < this.Size; i++)
             {
-                yield return this.innerCollection[i];
+                yield return this.InnerCollection[i];
             }
         }
 

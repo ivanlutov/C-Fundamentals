@@ -13,7 +13,7 @@ namespace _03BarracksFactory
         {
             IRepository repository = new UnitRepository();
             IUnitFactory unitFactory = new UnitFactory();
-            IInterpreter interpretator = new CommandInterpreter(repository,unitFactory);
+            IInterpreter interpretator = new CommandInterpreter(repository, unitFactory);
             IRunnable engine = new Engine(interpretator);
             engine.Run();
         }
