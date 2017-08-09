@@ -1,7 +1,8 @@
 ﻿namespace BashSoftTesting.Fakes
 {
-    using System;
     using BashSoft.DataStructures;
+    using System;
+
     internal class SimpleSortedListFake<T> : SimpleSortedList<T>
         where T : IComparable<T>
     {

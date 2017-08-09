@@ -10,6 +10,7 @@ namespace BashSoft.Commands
     {
         [Inject]
         private IContentComparer judge;
+
         public CompareFilesCommand(string input, string[] data)
             : base(input, data)
         {

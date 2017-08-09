@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using BashSoft.Contracts;
+﻿using BashSoft.Contracts;
 using BashSoft.DataStructures;
 using BashSoft.Exceptions;
+using System;
+using System.Collections.Generic;
 
 namespace BashSoft.Commands
 {
@@ -13,6 +13,7 @@ namespace BashSoft.Commands
     {
         [Inject]
         private IDatabase repository;
+
         public DisplayCommand(string input, string[] data)
             : base(input, data)
         {
@@ -66,7 +67,6 @@ namespace BashSoft.Commands
             if (sortType.Equals("ascending", StringComparison.OrdinalIgnoreCase))
             {
                 return Comparer<IStudent>.Create((studentOne, studentTwo) => studentOne.CompareTo(studentOne));
-
             }
 
             if (sortType.Equals("descending", StringComparison.OrdinalIgnoreCase))

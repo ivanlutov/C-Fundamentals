@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BashSoft.Contracts;
+using System;
 using System.IO;
-using BashSoft.Contracts;
 
 namespace BashSoft
 {

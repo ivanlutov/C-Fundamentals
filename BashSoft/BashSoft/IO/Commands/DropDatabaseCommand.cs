@@ -10,6 +10,7 @@ namespace BashSoft.Commands
     {
         [Inject]
         private IDatabase repository;
+
         public DropDatabaseCommand(string input, string[] data)
             : base(input, data)
         {

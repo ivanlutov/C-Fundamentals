@@ -1,6 +1,7 @@
 ﻿namespace BashSoft.Attributes
 {
     using System;
+
     [AttributeUsage(AttributeTargets.Class)]
     public class AliasAttribute : Attribute
     {

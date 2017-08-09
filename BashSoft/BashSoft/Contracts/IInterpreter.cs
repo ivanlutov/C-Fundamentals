@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BashSoft.Contracts
+﻿namespace BashSoft.Contracts
 {
     public interface IInterpreter
     {

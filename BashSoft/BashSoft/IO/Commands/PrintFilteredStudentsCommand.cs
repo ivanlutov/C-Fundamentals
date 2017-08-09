@@ -10,6 +10,7 @@ namespace BashSoft.Commands
     {
         [Inject]
         private IDatabase repository;
+
         public PrintFilteredStudentsCommand(string input, string[] data)
             : base(input, data)
         {

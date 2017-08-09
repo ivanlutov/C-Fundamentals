@@ -1,5 +1,4 @@
-﻿using BashSoft.Contracts;
-using BashSoft.Exceptions;
+﻿using BashSoft.Exceptions;
 
 namespace BashSoft.Commands
 {

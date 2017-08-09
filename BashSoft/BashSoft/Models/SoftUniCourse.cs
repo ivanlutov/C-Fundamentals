@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using BashSoft.Contracts;
+﻿using BashSoft.Contracts;
 using BashSoft.Exceptions;
+using System.Collections.Generic;
 
 namespace BashSoft.Models
 {
@@ -36,7 +36,6 @@ namespace BashSoft.Models
         {
             get { return this.studentsByName; }
         }
-
 
         public void EnrollStudent(IStudent softUniStudent)
         {

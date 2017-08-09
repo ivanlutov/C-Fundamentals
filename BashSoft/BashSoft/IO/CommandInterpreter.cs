@@ -1,13 +1,12 @@
-﻿using System;
-using BashSoft.Commands;
+﻿using BashSoft.Commands;
 using BashSoft.Contracts;
-using BashSoft.Exceptions;
+using System;
 
 namespace BashSoft
 {
+    using BashSoft.Attributes;
     using System.Linq;
     using System.Reflection;
-    using BashSoft.Attributes;
 
     public class CommandInterpreter : IInterpreter
     {
@@ -66,7 +65,7 @@ namespace BashSoft
                 Attribute atrAttribute = fieldOfCommand.GetCustomAttribute(typeof(InjectAttribute));
                 if (atrAttribute != null)
                 {
-                    if (fieldsOfInterpreter.Any(x=> x.FieldType == fieldOfCommand.FieldType))
+                    if (fieldsOfInterpreter.Any(x => x.FieldType == fieldOfCommand.FieldType))
                     {
                         fieldOfCommand.SetValue(exe, fieldsOfInterpreter
                             .First(f => f.FieldType == fieldOfCommand.FieldType)

@@ -1,5 +1,5 @@
-﻿using System;
-using BashSoft.Contracts;
+﻿using BashSoft.Contracts;
+using System;
 
 namespace BashSoft
 {

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using BashSoft.Contracts;
+using BashSoft.DataStructures;
+using BashSoft.Exceptions;
+using BashSoft.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using BashSoft.Contracts;
-using BashSoft.DataStructures;
-using BashSoft.Exceptions;
-using BashSoft.Models;
 
 namespace BashSoft
 {

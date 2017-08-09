@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IKeyCardUI.cs" />
+    <Compile Include="IPinCodeUI.cs" />
     <Compile Include="ISecurityUI.cs" />
     <Compile Include="KeyCardCheck.cs" />
     <Compile Include="PinCodeCheck.cs" />

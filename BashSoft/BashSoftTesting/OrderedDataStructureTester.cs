@@ -2,11 +2,11 @@
 
 namespace BashSoftTesting
 {
+    using BashSoft.DataStructures;
+    using BashSoftTesting.Fakes;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using BashSoft.DataStructures;
-    using BashSoftTesting.Fakes;
 
     [TestFixture]
     public class OrderedDataStructureTester

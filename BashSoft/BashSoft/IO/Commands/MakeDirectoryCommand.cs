@@ -10,6 +10,7 @@ namespace BashSoft.Commands
     {
         [Inject]
         private IDirectoryManager inputOutputManager;
+
         public MakeDirectoryCommand(string input, string[] data)
             : base(input, data)
         {

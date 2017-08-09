@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BashSoft.Contracts;
+using BashSoft.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using BashSoft.Contracts;
-using BashSoft.Exceptions;
 
 namespace BashSoft.Models
 {
@@ -56,7 +56,6 @@ namespace BashSoft.Models
 
             this.enrolledCourses.Add(softUniCourse.Name, softUniCourse);
         }
-
 
         public void SetMarkOnCourse(string courseName, params int[] scores)
         {

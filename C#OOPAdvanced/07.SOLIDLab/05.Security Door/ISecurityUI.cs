@@ -1,9 +1,6 @@
 ﻿namespace _05.Security_Door
 {
-    public interface ISecurityUI
+    public interface ISecurityUI : IKeyCardUI, IPinCodeUI
     {
-        string RequestKeyCard();
-
-        int RequestPinCode();
     }
 }

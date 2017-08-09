@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BashSoft.DataStructures
 {
-    public interface ISimpleOrderedBag<T> : IEnumerable<T> 
+    public interface ISimpleOrderedBag<T> : IEnumerable<T>
         where T : IComparable<T>
     {
         bool Remove(T element);
 
         int Capacity { get; }
+
         void Add(T element);
 
         void AddAll(ICollection<T> collection);

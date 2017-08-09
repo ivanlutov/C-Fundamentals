@@ -1,6 +1,6 @@
 ﻿namespace _03.Detail_Printer
 {
-    public class Employee 
+    public class Employee
     {
         public Employee(string name)
         {

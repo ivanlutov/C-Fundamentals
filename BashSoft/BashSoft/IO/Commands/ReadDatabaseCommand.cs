@@ -10,6 +10,7 @@ namespace BashSoft.Commands
     {
         [Inject]
         private IDatabase repository;
+
         public ReadDatabaseCommand(string input, string[] data)
             : base(input, data)
         {

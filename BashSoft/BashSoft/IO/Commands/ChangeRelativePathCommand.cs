@@ -10,6 +10,7 @@ namespace BashSoft.Commands
     {
         [Inject]
         private IDirectoryManager inputOutputManager;
+
         public ChangeRelativePathCommand(string input, string[] data)
             : base(input, data)
         {

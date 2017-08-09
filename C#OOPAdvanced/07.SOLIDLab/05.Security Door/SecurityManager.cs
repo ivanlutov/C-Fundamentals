@@ -22,6 +22,7 @@
                 case 1:
                     Console.WriteLine(this.keyCardCheck.ValidateUser());
                     break;
+
                 case 2:
                     Console.WriteLine(this.pinCodeCheck.ValidateUser());
                     break;

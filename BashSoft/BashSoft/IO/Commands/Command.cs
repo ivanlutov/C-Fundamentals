@@ -1,6 +1,6 @@
-﻿using System;
-using BashSoft.Contracts;
+﻿using BashSoft.Contracts;
 using BashSoft.Exceptions;
+using System;
 
 namespace BashSoft.Commands
 {
@@ -8,7 +8,7 @@ namespace BashSoft.Commands
     {
         private string input;
         private string[] data;
-      
+
         protected Command(string input, string[] data)
         {
             this.Input = input;
@@ -43,7 +43,7 @@ namespace BashSoft.Commands
                 this.data = value;
             }
         }
-        
+
         public abstract void Execute();
     }
 }

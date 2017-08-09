@@ -32,8 +32,8 @@ namespace BashSoft.DataStructures
         public SimpleSortedList()
             : this(Comparer<T>.Create((x, y) => x.CompareTo(y)), DefaultSize)
         {
-
         }
+
         protected T[] InnerCollection { get; private set; }
 
         private void InitializeInnerCollection(int capacity)
