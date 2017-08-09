@@ -1,13 +1,15 @@
 ﻿namespace _01.Logger.Models.AppenderModels
 {
-    using System;
     using _01.Logger.Enums;
     using _01.Logger.Interfaces;
+    using System;
+
     public class ConsoleAppender : IAppender
     {
         private ILayout layout;
 
         private int countOfMessage;
+
         public ConsoleAppender(ILayout layout)
         {
             this.layout = layout;

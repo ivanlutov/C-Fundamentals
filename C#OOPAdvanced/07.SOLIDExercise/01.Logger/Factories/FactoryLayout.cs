@@ -1,8 +1,8 @@
 ﻿namespace _01.Logger.Factories
 {
-    using System;
     using _01.Logger.Interfaces;
     using _01.Logger.Models.LayoutModels;
+    using System;
 
     public class FactoryLayout
     {

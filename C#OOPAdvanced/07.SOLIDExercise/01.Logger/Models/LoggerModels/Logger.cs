@@ -1,11 +1,13 @@
 ﻿namespace _01.Logger.Models.LoggerModels
 {
-    using System.Collections.Generic;
     using _01.Logger.Enums;
     using _01.Logger.Interfaces;
+    using System.Collections.Generic;
+
     public class Logger : ILogger
     {
         private readonly IList<IAppender> appenders;
+
         public Logger(params IAppender[] appenders)
         {
             this.appenders = new List<IAppender>(appenders);
@@ -15,6 +17,7 @@
         {
             return this.appenders;
         }
+
         public void Info(string date, string msg)
         {
             this.Append(ReportLevel.Info, date, msg);

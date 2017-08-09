@@ -1,8 +1,9 @@
 ﻿namespace _01.Logger.Models.AppenderModels
 {
-    using System.IO;
     using _01.Logger.Enums;
     using _01.Logger.Interfaces;
+    using System.IO;
+
     public class FileAppender : IAppender
     {
         private readonly ILayout layout;
@@ -10,6 +11,7 @@
         private LogFile logFile;
 
         private int countOfMessages;
+
         public FileAppender(ILayout layout)
         {
             this.layout = layout;
@@ -32,6 +34,7 @@
                 }
             }
         }
+
         public override string ToString()
         {
             return

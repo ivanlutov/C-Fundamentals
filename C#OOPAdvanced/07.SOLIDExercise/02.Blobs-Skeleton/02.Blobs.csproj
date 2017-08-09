@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D53B690A-7878-42BE-A2F0-9D84B3AD35DE}</ProjectGuid>
+    <ProjectGuid>{4B37FFCA-A4C3-4C9A-B3F2-C70F9377F378}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_01.Logger</RootNamespace>
-    <AssemblyName>01.Logger</AssemblyName>
+    <RootNamespace>_02.Blobs</RootNamespace>
+    <AssemblyName>02.Blobs</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,29 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Controller.cs" />
-    <Compile Include="Enums\ReportLevel.cs" />
-    <Compile Include="Factories\FactoryAppender.cs" />
-    <Compile Include="Factories\FactoryLayout.cs" />
-    <Compile Include="Interfaces\IAppender.cs" />
-    <Compile Include="Interfaces\ILayout.cs" />
-    <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IReader.cs" />
-    <Compile Include="Interfaces\IWriter.cs" />
-    <Compile Include="Models\AppenderModels\ConsoleAppender.cs" />
-    <Compile Include="Models\AppenderModels\FileAppender.cs" />
-    <Compile Include="Models\LayoutModels\SimpleLayout.cs" />
-    <Compile Include="Models\LayoutModels\XmlLayout.cs" />
-    <Compile Include="Models\LogFile.cs" />
-    <Compile Include="Models\LoggerModels\Logger.cs" />
-    <Compile Include="Models\ReaderModels\ConsoleReader.cs" />
-    <Compile Include="Models\WriterModels\ConsoleWriter.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="Entities\Attacks\Attack.cs" />
+    <Compile Include="Entities\Attacks\PutridFart.cs" />
+    <Compile Include="Entities\Behaviors\Aggressive.cs" />
+    <Compile Include="Entities\Behaviors\Inflated.cs" />
+    <Compile Include="Entities\Blob.cs" />
+    <Compile Include="Interfaces\IAttack.cs" />
+    <Compile Include="Interfaces\IBehavior.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

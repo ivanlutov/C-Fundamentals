@@ -1,19 +1,22 @@
-﻿namespace _01.Logger
+﻿using _01.Logger.Factories;
+using _01.Logger.Models.ReaderModels;
+using _01.Logger.Models.WriterModels;
+
+namespace _01.Logger
 {
-    using System;
-    using System.Security.Principal;
     using _01.Logger.Engine;
     using _01.Logger.Interfaces;
-    using _01.Logger.Models;
-    using _01.Logger.Models.AppenderModels;
-    using _01.Logger.Models.LayoutModels;
-    using _01.Logger.Models.LoggerModels;
 
     public class Startup
     {
         public static void Main()
         {
-            var controller = new Controller();
+            var factoryAppender = new FactoryAppender();
+            var factoryLayout = new FactoryLayout();
+            IWriter consoleWriter = new ConsoleWriter();
+            IReader consoleReader = new ConsoleReader();
+            var controller = new Controller(factoryAppender, factoryLayout, consoleWriter, consoleReader);
+
             controller.Run();
         }
     }

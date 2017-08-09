@@ -1,8 +1,9 @@
 ﻿namespace _01.Logger.Models.LayoutModels
 {
-    using System.Text;
     using _01.Logger.Enums;
     using _01.Logger.Interfaces;
+    using System.Text;
+
     public class XmlLayout : ILayout
     {
         public string Formatting(ReportLevel reportLevel, string date, string msg)
