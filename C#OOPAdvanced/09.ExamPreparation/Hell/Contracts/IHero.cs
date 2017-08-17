@@ -6,4 +6,6 @@
     long Intelligence { get; set; }
     long HitPoints { get; set; }
     long Damage { get; set; }
+
+    IInventory Inventory { get; }
 }

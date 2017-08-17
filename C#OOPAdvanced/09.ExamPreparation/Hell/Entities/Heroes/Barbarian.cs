@@ -6,8 +6,8 @@
     private const int HitPointsCreate = 350;
     private const int DamagePointsCreate = 150;
 
-    public Barbarian(string name)
-        : base(name, StrengthPointsCreate, AgilityPointsCreate, IntelligencePointsCreate, HitPointsCreate, DamagePointsCreate)
+    public Barbarian(string name, IInventory inventoty) 
+        : base(name, StrengthPointsCreate, AgilityPointsCreate, IntelligencePointsCreate, HitPointsCreate, DamagePointsCreate, inventoty)
     {
     }
 }

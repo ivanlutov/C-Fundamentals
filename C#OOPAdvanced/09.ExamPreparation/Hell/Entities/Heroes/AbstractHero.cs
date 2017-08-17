@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 public class AbstractHero : IHero, IComparable<AbstractHero>
 {
-    private IInventory inventory;
+    private readonly IInventory inventory;
     private long strength;
     private long agility;
     private long intelligence;
@@ -12,7 +15,7 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
     private long damage;
     private IDictionary<string, IItem> items;
 
-    protected AbstractHero(string name, int strength, int agility, int intelligence, int hitPoints, int damage)
+    protected AbstractHero(string name, int strength, int agility, int intelligence, int hitPoints, int damage, IInventory inventoty)
     {
         this.Name = name;
         this.strength = strength;
@@ -20,7 +23,7 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
         this.intelligence = intelligence;
         this.hitPoints = hitPoints;
         this.damage = damage;
-        this.inventory = new HeroInventory();
+        this.inventory = inventoty;
     }
 
     public string Name
@@ -69,21 +72,24 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
     //REFLECTION
     public ICollection<IItem> Items
     {
-        get { return this.inventory.GetItems().Values; }
-        //set
-        //{
-        //    Type typeOfInventory = typeof(HeroInventory);
-        //    FieldInfo[] fieldInfo = typeOfInventory
-        //        .GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
-        //    FieldInfo commonItemsStorage = fieldInfo.First(f => f.Name == "commonItems");
-        //    this.items = commonItemsStorage as ICollection<IItem>;
-        //}
+        get
+        {
+            Type typeOfInventory = typeof(HeroInventory);
+            FieldInfo[] fieldInfo = typeOfInventory
+                .GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo commonItemsStorage = fieldInfo.First(f => f.GetCustomAttributes<ItemAttribute>() != null);
+
+            Dictionary<string, IItem> items = (Dictionary<string, IItem>)commonItemsStorage.GetValue(this.inventory);
+
+            return items.Values;
+        }
     }
 
     public IInventory Inventory
     {
         get { return this.inventory; }
     }
+
     public void AddRecipe(IRecipe recipe)
     {
         this.inventory.AddRecipeItem(recipe);

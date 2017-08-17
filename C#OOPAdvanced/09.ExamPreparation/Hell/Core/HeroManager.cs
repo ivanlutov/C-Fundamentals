@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Hell.Contracts;
 
@@ -8,11 +9,13 @@ public class HeroManager : IManager
 {
     private ItemFactory itemFactory;
     public Dictionary<string, AbstractHero> heroes;
+    private IInventory inventory;
 
-    public HeroManager(ItemFactory itemFactory)
+    public HeroManager(ItemFactory itemFactory, IInventory inventory)
     {
         this.itemFactory = itemFactory;
         this.heroes = new Dictionary<string, AbstractHero>();
+        this.inventory = inventory;
     }
     public string AddHero(List<string> arguments)
     {
@@ -23,9 +26,9 @@ public class HeroManager : IManager
 
         try
         {
-            Type clazz = Type.GetType(heroType);
-            var constructors = clazz.GetConstructors();
-            AbstractHero hero = (AbstractHero)constructors[0].Invoke(new object[] { heroName });
+            Type typeHero = Type.GetType(heroType);
+            var constructors = typeHero.GetConstructors();
+            AbstractHero hero = (AbstractHero)constructors[0].Invoke(new object[] { heroName, this.inventory });
             this.heroes[heroName] = hero;
 
             result = string.Format($"Created {heroType} - {hero.Name}");
@@ -45,13 +48,6 @@ public class HeroManager : IManager
 
         IItem newItem = itemFactory.Create(arguments);
         this.heroes[heroName].Inventory.AddCommonItem(newItem);
-
-        //Type typeOfInventory = typeof(HeroInventory);
-        //FieldInfo[] fieldInfo = typeOfInventory
-        //    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
-        //FieldInfo commonItemsStorage = fieldInfo.First(f => f.Name == "commonItems");
-
-        //commonItemsStorage.SetValue(typeOfInventory, new object[] { heroName, newItem });
 
         result = string.Format(Constants.ItemCreateMessage, newItem.Name, heroName);
         return result;

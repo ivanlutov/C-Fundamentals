@@ -16,5 +16,4 @@ public interface IInventory
 
     void AddRecipeItem(IRecipe recipe);
 
-    IDictionary<string, IItem> GetItems();
 }

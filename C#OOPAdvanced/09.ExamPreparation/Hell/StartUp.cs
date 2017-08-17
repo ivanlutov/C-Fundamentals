@@ -5,7 +5,8 @@
         ItemFactory itemFactory = new ItemFactory();
         IInputReader reader = new ConsoleReader();
         IOutputWriter writer = new ConsoleWriter();
-        HeroManager manager = new HeroManager(itemFactory);
+        IInventory inventory = new HeroInventory();
+        HeroManager manager = new HeroManager(itemFactory, inventory);
 
         Engine engine = new Engine(reader, writer, manager);
         engine.Run();

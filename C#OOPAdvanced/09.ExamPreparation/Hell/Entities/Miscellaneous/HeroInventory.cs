@@ -39,15 +39,10 @@ public class HeroInventory : IInventory
         get { return this.commonItems.Values.Sum(i => (long)i.DamageBonus); }
     }
 
-    public IDictionary<string, IItem> GetItems()
-    {
-        return this.commonItems;
-    }
-
     public void AddCommonItem(IItem item)
     {
         this.commonItems.Add(item.Name, item);
-        //this.CheckRecipes();
+        this.CheckRecipes();
     }
 
     public void AddRecipeItem(IRecipe recipe)
