@@ -78,8 +78,8 @@ public class HeroManager : IManager
     {
         var sb = new StringBuilder();
         var counter = 1;
-        
-        foreach (var hero in this.heroes.Values)
+        var heroesToPrint = new SortedSet<AbstractHero>(this.heroes.Values);
+        foreach (var hero in heroesToPrint)
         {
             List<string> itemsByName = new List<string>();
             foreach (var heroItem in hero.Items)
@@ -87,7 +87,7 @@ public class HeroManager : IManager
                 itemsByName.Add(heroItem.Name);
             }
 
-            sb.AppendLine($"{counter++} .{hero.GetType().Name}: {hero.Name}");
+            sb.AppendLine($"{counter++}. {hero.GetType().Name}: {hero.Name}");
             sb.AppendLine($"###HitPoints: {hero.HitPoints}");
             sb.AppendLine($"###Damage: {hero.Damage}");
             sb.AppendLine($"###Strength: {hero.Strength}");
@@ -95,7 +95,7 @@ public class HeroManager : IManager
             sb.AppendLine($"###Intelligence: {hero.Intelligence}");
             if (itemsByName.Any())
             {
-                sb.AppendLine($"###Items: {string.Join(" ", itemsByName)}");
+                sb.AppendLine($"###Items: {string.Join(", ", itemsByName)}");
             }
             else
             {

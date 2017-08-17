@@ -23,11 +23,11 @@ public abstract class Item : IItem
         var sb = new StringBuilder();
 
         sb.AppendLine($"###Item: {this.Name}");
-        sb.AppendLine($"###+25 {this.StrengthBonus}");
-        sb.AppendLine($"###+10 {this.AgilityBonus}");
-        sb.AppendLine($"###+10 {this.IntelligenceBonus}");
-        sb.AppendLine($"###+100 {this.HitPointsBonus}");
-        sb.AppendLine($"###+50 {this.DamageBonus}");
+        sb.AppendLine($"###+{this.StrengthBonus} Strength");
+        sb.AppendLine($"###+{this.AgilityBonus} Agility");
+        sb.AppendLine($"###+{this.IntelligenceBonus} Intelligence");
+        sb.AppendLine($"###+{this.HitPointsBonus} HitPoints");
+        sb.AppendLine($"###+{this.DamageBonus} Damage");
 
         return sb.ToString().Trim();
     }

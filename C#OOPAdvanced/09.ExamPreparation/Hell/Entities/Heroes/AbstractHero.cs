@@ -91,19 +91,12 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
 
     public int CompareTo(AbstractHero other)
     {
-        if (ReferenceEquals(this, other))
-        {
-            return 0;
-        }
-        if (ReferenceEquals(null, other))
-        {
-            return 1;
-        }
         var primary = other.PrimaryStats.CompareTo(this.PrimaryStats);
         if (primary != 0)
         {
             return primary;
         }
+
         return other.SecondaryStats.CompareTo(this.SecondaryStats);
     }
 

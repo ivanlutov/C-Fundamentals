@@ -5,6 +5,6 @@ public class ConsoleReader : IInputReader
 {
     public string ReadLine()
     {
-        return Console.ReadLine();
+        return Console.ReadLine().Trim();
     }
 }
