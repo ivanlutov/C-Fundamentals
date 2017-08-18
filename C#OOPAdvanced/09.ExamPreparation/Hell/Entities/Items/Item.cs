@@ -11,6 +11,7 @@ public abstract class Item : IItem
         this.HitPointsBonus = hitPointsBonus;
         this.DamageBonus = damageBonus;
     }
+
     public string Name { get; set; }
     public int StrengthBonus { get; set; }
     public int AgilityBonus { get; set; }

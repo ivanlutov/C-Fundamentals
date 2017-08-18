@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -13,7 +12,6 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
     private long intelligence;
     private long hitPoints;
     private long damage;
-    private IDictionary<string, IItem> items;
 
     protected AbstractHero(string name, int strength, int agility, int intelligence, int hitPoints, int damage, IInventory inventoty)
     {
@@ -26,8 +24,7 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
         this.inventory = inventoty;
     }
 
-    public string Name
-    { get; private set; }
+    public string Name { get; private set; }
 
     public long Strength
     {
@@ -69,7 +66,6 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
         get { return this.HitPoints + this.Damage; }
     }
 
-    //REFLECTION
     public ICollection<IItem> Items
     {
         get
@@ -79,7 +75,7 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
                 .GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
             FieldInfo commonItemsStorage = fieldInfo.First(f => f.GetCustomAttributes<ItemAttribute>() != null);
 
-            Dictionary<string, IItem> items = (Dictionary<string, IItem>)commonItemsStorage.GetValue(this.inventory);
+            IDictionary<string, IItem> items = (IDictionary<string, IItem>)commonItemsStorage.GetValue(this.inventory);
 
             return items.Values;
         }
@@ -97,6 +93,14 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
 
     public int CompareTo(AbstractHero other)
     {
+        if (ReferenceEquals(this, other))
+        {
+            return 0;
+        }
+        if (ReferenceEquals(null, other))
+        {
+            return 1;
+        }
         var primary = other.PrimaryStats.CompareTo(this.PrimaryStats);
         if (primary != 0)
         {

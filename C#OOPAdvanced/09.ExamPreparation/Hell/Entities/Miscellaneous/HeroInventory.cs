@@ -4,9 +4,9 @@ using System.Linq;
 public class HeroInventory : IInventory
 {
     [Item]
-    private Dictionary<string, IItem> commonItems;
+    private IDictionary<string, IItem> commonItems;
 
-    private Dictionary<string, IRecipe> recipeItems;
+    private IDictionary<string, IRecipe> recipeItems;
 
     public HeroInventory()
     {
@@ -55,7 +55,7 @@ public class HeroInventory : IInventory
     {
         foreach (IRecipe recipe in this.recipeItems.Values)
         {
-            List<string> requiredItems = new List<string>(recipe.RequiredItems);
+            IList<string> requiredItems = new List<string>(recipe.RequiredItems);
 
             foreach (IItem commonItem in this.commonItems.Values)
             {

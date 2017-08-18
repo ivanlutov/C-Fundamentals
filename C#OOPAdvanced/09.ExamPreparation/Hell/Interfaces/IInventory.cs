@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public interface IInventory
+﻿public interface IInventory
 {
     long TotalStrengthBonus { get; }
 
@@ -15,5 +13,4 @@ public interface IInventory
     void AddCommonItem(IItem item);
 
     void AddRecipeItem(IRecipe recipe);
-
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Hell.Contracts;
 
 public class ConsoleWriter : IOutputWriter
 {

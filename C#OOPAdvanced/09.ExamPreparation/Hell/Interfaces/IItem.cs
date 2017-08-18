@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-public interface IRecipe
+﻿public interface IItem
 {
-    List<string> RequiredItems { get; set; }
-    string RecipeItemName { get; set; }
+    string Name { get; set; }
     int StrengthBonus { get; set; }
     int AgilityBonus { get; set; }
     int IntelligenceBonus { get; set; }

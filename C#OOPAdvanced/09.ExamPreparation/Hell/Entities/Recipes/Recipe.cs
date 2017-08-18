@@ -13,7 +13,7 @@ public class Recipe : IRecipe
         this.RequiredItems = new List<string>(items);
     }
 
-    public List<string> RequiredItems { get; set; }
+    public IList<string> RequiredItems { get; set; }
     public string RecipeItemName { get; set; }
     public int StrengthBonus { get; set; }
     public int AgilityBonus { get; set; }

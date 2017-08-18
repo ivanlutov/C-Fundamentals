@@ -3,12 +3,13 @@
     public static void Main()
     {
         ItemFactory itemFactory = new ItemFactory();
+        InventoryFactory inventoryFactory = new InventoryFactory();
         IInputReader reader = new ConsoleReader();
         IOutputWriter writer = new ConsoleWriter();
-        IInventory inventory = new HeroInventory();
-        HeroManager manager = new HeroManager(itemFactory, inventory);
+        IHeroManager heroManager = new HeroManager(itemFactory, inventoryFactory);
+        ICommandInterpreter commandInterpreter = new CommandInterpreter(heroManager);
 
-        Engine engine = new Engine(reader, writer, manager);
+        IEngine engine = new Engine(reader, writer, commandInterpreter);
         engine.Run();
     }
 }

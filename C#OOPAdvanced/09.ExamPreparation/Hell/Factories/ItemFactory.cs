@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class ItemFactory
 {
@@ -12,9 +11,8 @@ public class ItemFactory
         int hitPointsBonus = int.Parse(arguments[5]);
         int damageBonus = int.Parse(arguments[6]);
 
-        CommonItem item = new CommonItem(itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus);
+        IItem item = new CommonItem(itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus);
 
         return item;
     }
 }
-

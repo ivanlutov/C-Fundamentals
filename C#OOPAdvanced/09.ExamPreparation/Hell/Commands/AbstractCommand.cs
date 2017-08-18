@@ -1,9 +1,27 @@
-﻿using Hell.Contracts;
+﻿using System.Collections.Generic;
 
-public class AbstractCommand : ICommand
+public abstract class AbstractCommand : ICommand
 {
-    public string Execute()
+    private IList<string> args;
+    private IHeroManager heroManager;
+
+    protected AbstractCommand(IList<string> args, IHeroManager heroManager)
     {
-        throw new System.NotImplementedException();
+        this.Args = args;
+        this.HeroManager = heroManager;
     }
+
+    public IList<string> Args
+    {
+        get { return args; }
+        set { args = value; }
+    }
+
+    public IHeroManager HeroManager
+    {
+        get { return heroManager; }
+        set { heroManager = value; }
+    }
+
+    public abstract string Execute();
 }

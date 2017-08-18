@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
-using Hell.Contracts;
 
 public class QuitCommand : AbstractCommand
 {
-    private IManager manager;
-    
-    public QuitCommand(List<string> args, IManager manager)
+    public QuitCommand(IList<string> args, IHeroManager heroManager) 
+        : base(args, heroManager)
     {
-        this.manager = manager;
     }
 
-    public virtual string Execute()
+    public override string Execute()
     {
-        //return base.Manager.Quit(this.ArgsList);
-        return "";
+        return this.HeroManager.PrintAllHeroes();
     }
 }

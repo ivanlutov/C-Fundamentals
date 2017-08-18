@@ -43,16 +43,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\HeroCommand.cs" />
+    <Compile Include="Commands\InspectCommand.cs" />
+    <Compile Include="Commands\ItemCommand.cs" />
     <Compile Include="Commands\QuitCommand.cs" />
-    <Compile Include="Contracts\ICommand.cs" />
-    <Compile Include="Contracts\IFactory.cs" />
-    <Compile Include="Contracts\IHero.cs" />
-    <Compile Include="Contracts\IInputReader.cs" />
-    <Compile Include="Contracts\IInventory.cs" />
-    <Compile Include="Contracts\IItem.cs" />
-    <Compile Include="Contracts\IManager.cs" />
-    <Compile Include="Contracts\IOutputWriter.cs" />
-    <Compile Include="Contracts\IRecipe.cs" />
+    <Compile Include="Commands\RecipeCommand.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\ICommandInterpreter.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="Interfaces\IFactory.cs" />
+    <Compile Include="Interfaces\IHero.cs" />
+    <Compile Include="Interfaces\IInputReader.cs" />
+    <Compile Include="Interfaces\IInventory.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="Interfaces\IHeroManager.cs" />
+    <Compile Include="Interfaces\IOutputWriter.cs" />
+    <Compile Include="Interfaces\IRecipe.cs" />
+    <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\HeroManager.cs" />
     <Compile Include="Entities\Heroes\AbstractHero.cs" />
@@ -63,12 +70,11 @@
     <Compile Include="Entities\Miscellaneous\HeroInventory.cs" />
     <Compile Include="Entities\Miscellaneous\ItemAttribute.cs" />
     <Compile Include="Entities\Recipes\Recipe.cs" />
-    <Compile Include="Factories\HeroFactory.cs" />
+    <Compile Include="Factories\InventoryFactory.cs" />
     <Compile Include="Factories\ItemFactory.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="Entities\Items\CommonItem.cs" />
-    <Compile Include="Entities\Items\RecipeItem.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Constants.cs" />
@@ -76,8 +82,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

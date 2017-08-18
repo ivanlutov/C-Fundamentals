@@ -6,8 +6,7 @@
     private const int HitPointsCreate = 150;
     private const int DamagePointsCreate = 300;
 
-
-    public Assassin(string name, IInventory inventoty) 
+    public Assassin(string name, IInventory inventoty)
         : base(name, StrengthPointsCreate, AgilityPointsCreate, IntelligencePointsCreate, HitPointsCreate, DamagePointsCreate, inventoty)
     {
     }

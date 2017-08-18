@@ -5,7 +5,8 @@
     private const int IntelligencePointsCreate = 100;
     private const int HitPointsCreate = 100;
     private const int DamagePointsCreate = 250;
-    public Wizard(string name, IInventory inventoty) 
+
+    public Wizard(string name, IInventory inventoty)
         : base(name, StrengthPointsCreate, AgilityPointsCreate, IntelligencePointsCreate, HitPointsCreate, DamagePointsCreate, inventoty)
     {
     }
