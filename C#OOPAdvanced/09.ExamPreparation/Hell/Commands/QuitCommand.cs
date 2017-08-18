@@ -2,7 +2,7 @@
 
 public class QuitCommand : AbstractCommand
 {
-    public QuitCommand(IList<string> args, IHeroManager heroManager) 
+    public QuitCommand(IList<string> args, IHeroManager heroManager)
         : base(args, heroManager)
     {
     }

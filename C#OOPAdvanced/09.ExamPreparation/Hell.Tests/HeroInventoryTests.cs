@@ -1,5 +1,5 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
 
 [TestFixture]
 public class HeroInventoryTests
@@ -12,7 +12,7 @@ public class HeroInventoryTests
         var item2 = new CommonItem("Sword", 10, 10, 10, 10, 10);
 
         heroInventory.AddCommonItem(item1);
-        
+
         Assert.Throws<ArgumentException>(() => heroInventory.AddCommonItem(item2));
     }
 
@@ -37,6 +37,7 @@ public class HeroInventoryTests
 
         Assert.AreEqual(10, heroInventory.TotalDamageBonus);
     }
+
     [Test]
     public void TestInteligenceBonus()
     {
@@ -47,6 +48,7 @@ public class HeroInventoryTests
 
         Assert.AreEqual(10, heroInventory.TotalIntelligenceBonus);
     }
+
     [Test]
     public void TestStrenghtBonus()
     {
@@ -57,6 +59,7 @@ public class HeroInventoryTests
 
         Assert.AreEqual(10, heroInventory.TotalStrengthBonus);
     }
+
     [Test]
     public void TestHitPointsBonus()
     {
@@ -153,7 +156,7 @@ public class HeroInventoryTests
     public void AddCommonItemChangesDamage()
     {
         IItem item = new CommonItem("Axe", 10, 10, 10, 10, 10);
-        var heroInventory= new HeroInventory();
+        var heroInventory = new HeroInventory();
 
         heroInventory.AddCommonItem(item);
 
@@ -210,4 +213,3 @@ public class HeroInventoryTests
         Assert.Throws<NullReferenceException>(() => heroInventory.AddRecipeItem(recipe));
     }
 }
-

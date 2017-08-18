@@ -2,7 +2,7 @@
 
 public class InspectCommand : AbstractCommand
 {
-    public InspectCommand(IList<string> args, IHeroManager heroManager) 
+    public InspectCommand(IList<string> args, IHeroManager heroManager)
         : base(args, heroManager)
     {
     }
