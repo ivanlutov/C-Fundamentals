@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public class Engine : IEngine
@@ -24,7 +25,11 @@ public class Engine : IEngine
             IList<string> arguments = this.parseInput(inputLine);
 
             var result = commandInterpreter.InterpretCommand(arguments);
-            this.writer.WriteLine(result);
+
+            if (result != string.Empty)
+            {
+                this.writer.WriteLine(result);
+            }
 
             isRunning = !this.ShouldEnd(inputLine);
         }
@@ -32,7 +37,7 @@ public class Engine : IEngine
 
     private IList<string> parseInput(string input)
     {
-        return input.Split(' ').ToList();
+        return input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
     }
 
     private bool ShouldEnd(string inputLine)
