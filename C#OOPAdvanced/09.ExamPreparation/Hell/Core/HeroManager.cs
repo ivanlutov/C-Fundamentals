@@ -64,19 +64,10 @@ public class HeroManager : IHeroManager
         var neededItems = arguments.Skip(7).ToList();
 
         IRecipe recipe = new Recipe(recipeName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus, neededItems);
-        var currentItemsCount = this.heroes[heroName].Items.Count;
 
         this.heroes[heroName].AddRecipe(recipe);
 
-        if (currentItemsCount != this.heroes[heroName].Items.Count)
-        {
-            return string.Format(Constants.RecipeCreatedMessage, recipeName, heroName);
-        }
-        else
-        {
-            return string.Empty;
-        }
-
+        return string.Format(Constants.RecipeCreatedMessage, recipeName, heroName);
     }
 
     public string PrintAllHeroes()

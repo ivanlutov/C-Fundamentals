@@ -25,11 +25,7 @@ public class Engine : IEngine
             IList<string> arguments = this.parseInput(inputLine);
 
             var result = commandInterpreter.InterpretCommand(arguments);
-
-            if (result != string.Empty)
-            {
-                this.writer.WriteLine(result);
-            }
+            this.writer.WriteLine(result);
 
             isRunning = !this.ShouldEnd(inputLine);
         }
