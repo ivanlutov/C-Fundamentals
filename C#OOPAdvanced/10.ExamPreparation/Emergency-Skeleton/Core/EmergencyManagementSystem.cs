@@ -11,8 +11,6 @@
         private IServiceCenterFactory centerFactory;
         private IList<IEmergency> emergencies;
         private IList<IEmergencyCenter> centers;
-        private int countOfRegisteredEmergencies;
-        private int currentlyRegisteredEmergencies;
 
         public EmergencyManagementSystem(IEmergencyFactory emergencyFactory, IServiceCenterFactory centerFactory)
         {
@@ -20,15 +18,13 @@
             this.centerFactory = centerFactory;
             this.emergencies = new List<IEmergency>();
             this.centers = new List<IEmergencyCenter>();
-            this.countOfRegisteredEmergencies = 0;
-            this.currentlyRegisteredEmergencies = 0;
         }
 
         public string RegisterPropertyEmergency(List<string> args)
         {
             var propertyEmergency = this.emergencyFactory.Create(args);
             this.emergencies.Add(propertyEmergency);
-            this.countOfRegisteredEmergencies++;
+
             return $"Registered Public Property Emergency of level {propertyEmergency.Level} at {propertyEmergency.Time}.";
         }
 
@@ -36,7 +32,6 @@
         {
             var healthEmergency = this.emergencyFactory.Create(args);
             this.emergencies.Add(healthEmergency);
-            this.countOfRegisteredEmergencies++;
 
             return $"Registered Public Health Emergency of level {healthEmergency.Level} at {healthEmergency.Time}.";
         }
@@ -45,7 +40,6 @@
         {
             var orderEmergency = this.emergencyFactory.Create(args);
             this.emergencies.Add(orderEmergency);
-            this.countOfRegisteredEmergencies++;
 
             return $"Registered Public Order Emergency of level {orderEmergency.Level} at {orderEmergency.Time}.";
         }
@@ -106,7 +100,6 @@
                     {
                         emergencyCenter.Emergencies.Add(emergency);
                         this.emergencies.Remove(emergency);
-                        registeredEmergencies++;
                     }
                     else
                     {
@@ -118,7 +111,6 @@
             if (hasNotRegisteredEmergency)
             {
                 result = $"Successfully responded to all {typeOfEmergency} emergencies.";
-                this.currentlyRegisteredEmergencies++;
             }
             else
             {
@@ -139,6 +131,8 @@
             var policeCenters = this.centers.Count(c => c.GetType().FullName.Contains("Police") &&
                                                         c.Emergencies.Count < c.AmountOfMaximumEmergencies);
 
+            var countOfRegisteredEmergency = this.centers.Sum(c => c.Emergencies.Count);
+
             var countOfDamageFixed = this.centers.Where(c => c.GetType().FullName.Contains("Fire"))
                 .Sum(c => c.Emergencies.Sum(x => x.GetInfo()));
 
@@ -147,13 +141,13 @@
 
             var specialCasesProcessed = this.centers.Where(c => c.GetType().FullName.Contains("Police"))
                 .Sum(c => c.Emergencies.Sum(x => x.GetInfo()));
-          
+
             var sb = new StringBuilder();
             sb.AppendLine("PRRM Services Live Statistics");
             sb.AppendLine($"Fire Service Centers: {fireCenters}");
             sb.AppendLine($"Medical Service Centers: {medicalCenters}");
             sb.AppendLine($"Police Service Centers: {policeCenters}");
-            sb.AppendLine($"Total Processed Emergencies: {this.currentlyRegisteredEmergencies}");
+            sb.AppendLine($"Total Processed Emergencies: {countOfRegisteredEmergency}");
             sb.AppendLine($"Currently Registered Emergencies: {this.emergencies.Count}");
             sb.AppendLine($"Total Property Damage Fixed: {countOfDamageFixed}");
             sb.AppendLine($"Total Health Casualties Saved: {healthCasualtiesSaved}");
