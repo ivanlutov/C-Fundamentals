@@ -1,13 +1,13 @@
 ﻿public class Barbarian : AbstractHero
 {
-    private const int StrengthPointsCreate = 90;
-    private const int AgilityPointsCreate = 25;
-    private const int IntelligencePointsCreate = 10;
-    private const int HitPointsCreate = 350;
-    private const int DamagePointsCreate = 150;
+    private const int BarbarianStrength = 90;
+    private const int BarbarianAgility = 25;
+    private const int BarbarianIntelligence = 10;
+    private const int BarbarianHitPoints = 350;
+    private const int BarbarianDamage = 150;
 
-    public Barbarian(string name, IInventory inventoty)
-        : base(name, StrengthPointsCreate, AgilityPointsCreate, IntelligencePointsCreate, HitPointsCreate, DamagePointsCreate, inventoty)
+    public Barbarian(string name)
+        : base(name, BarbarianStrength, BarbarianAgility, BarbarianIntelligence, BarbarianHitPoints, BarbarianDamage)
     {
     }
 }

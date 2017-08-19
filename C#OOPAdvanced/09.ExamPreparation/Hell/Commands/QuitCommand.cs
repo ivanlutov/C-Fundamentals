@@ -2,13 +2,12 @@
 
 public class QuitCommand : AbstractCommand
 {
-    public QuitCommand(IList<string> args, IHeroManager heroManager)
-        : base(args, heroManager)
+    public QuitCommand(IList<string> args, IManager manager) : base(args, manager)
     {
     }
 
     public override string Execute()
     {
-        return this.HeroManager.PrintAllHeroes();
+        return base.Manager.Quit(Args);
     }
 }

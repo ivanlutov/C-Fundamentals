@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-public abstract class Item : IItem
+public class AbstractItem : IItem
 {
-    protected Item(string name, int strengthBonus, int agilityBonus, int intelligenceBonus, int hitPointsBonus, int damageBonus)
+    public AbstractItem(string name, int strengthBonus, int agilityBonus, int intelligenceBonus, int hitPointsBonus, int damageBonus)
     {
         this.Name = name;
         this.StrengthBonus = strengthBonus;
@@ -12,16 +12,21 @@ public abstract class Item : IItem
         this.DamageBonus = damageBonus;
     }
 
-    public string Name { get; set; }
-    public int StrengthBonus { get; set; }
-    public int AgilityBonus { get; set; }
-    public int IntelligenceBonus { get; set; }
-    public int HitPointsBonus { get; set; }
-    public int DamageBonus { get; set; }
+    public string Name { get; }
+
+    public int StrengthBonus { get; }
+
+    public int AgilityBonus { get; }
+
+    public int IntelligenceBonus { get; }
+
+    public int HitPointsBonus { get; }
+
+    public int DamageBonus { get; }
 
     public override string ToString()
     {
-        var sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
         sb.AppendLine($"###Item: {this.Name}");
         sb.AppendLine($"###+{this.StrengthBonus} Strength");

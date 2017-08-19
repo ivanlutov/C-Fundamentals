@@ -3,21 +3,24 @@
 public interface IHero
 {
     string Name { get; }
-    long Strength { get; set; }
-    long Agility { get; set; }
-    long Intelligence { get; set; }
-    long HitPoints { get; set; }
-    long Damage { get; set; }
+
+    long Strength { get; }
+
+    long Agility { get; }
+
+    long Intelligence { get; }
+
+    long HitPoints { get; }
+
+    long Damage { get; }
 
     long PrimaryStats { get; }
 
     long SecondaryStats { get; }
 
-    IInventory Inventory { get; }
-
     ICollection<IItem> Items { get; }
 
-    void AddRecipe(IRecipe recipe);
+    void AddItem(IItem item);
 
-    int CompareTo(AbstractHero other);
+    void AddRecipe(IRecipe recipe);
 }

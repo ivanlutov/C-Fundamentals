@@ -1,13 +1,13 @@
 ﻿public class Assassin : AbstractHero
 {
-    private const int StrengthPointsCreate = 25;
-    private const int AgilityPointsCreate = 100;
-    private const int IntelligencePointsCreate = 15;
-    private const int HitPointsCreate = 150;
-    private const int DamagePointsCreate = 300;
+    private const int AssasinStrength = 25;
+    private const int AssasinAgility = 100;
+    private const int AssasinIntelligence = 15;
+    private const int AssasinHitPoints = 150;
+    private const int AssasinDamage = 300;
 
-    public Assassin(string name, IInventory inventoty)
-        : base(name, StrengthPointsCreate, AgilityPointsCreate, IntelligencePointsCreate, HitPointsCreate, DamagePointsCreate, inventoty)
+    public Assassin(string name)
+        : base(name, AssasinStrength, AssasinAgility, AssasinIntelligence, AssasinHitPoints, AssasinDamage)
     {
     }
 }

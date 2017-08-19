@@ -3,34 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class HeroManager : IHeroManager
+public class HeroManager : IManager
 {
-    private readonly ItemFactory itemFactory;
-    private readonly InventoryFactory inventoryFactory;
-    private readonly IDictionary<string, AbstractHero> heroes;
+    private Dictionary<string, IHero> heroes;
 
-    public HeroManager(ItemFactory itemFactory, InventoryFactory inventoryFactory)
+    public HeroManager()
     {
-        this.itemFactory = itemFactory;
-        this.heroes = new Dictionary<string, AbstractHero>();
-        this.inventoryFactory = inventoryFactory;
+        this.heroes = new Dictionary<string, IHero>();
     }
 
     public string AddHero(IList<string> arguments)
     {
-        string result = string.Empty;
+        string result = null;
+
         string heroName = arguments[0];
         string heroType = arguments[1];
 
         try
         {
-            Type typeHero = Type.GetType(heroType);
-            var constructors = typeHero.GetConstructors();
-            var inventoryFactory = this.inventoryFactory.Create();
-            AbstractHero hero = (AbstractHero)constructors[0].Invoke(new object[] { heroName, inventoryFactory });
-            this.heroes[heroName] = hero;
+            Type clazz = Type.GetType(heroType);
+            var constructors = clazz.GetConstructors();
+            IHero hero = (IHero)constructors[0].Invoke(new object[] { heroName });
+            this.heroes.Add(hero.Name, hero);
 
-            result = string.Format($"Created {heroType} - {hero.Name}");
+            result = string.Format(Constants.HeroCreateMessage, heroType, hero.Name);
         }
         catch (Exception e)
         {
@@ -40,66 +36,78 @@ public class HeroManager : IHeroManager
         return result;
     }
 
-    public string AddItemToHero(IList<string> arguments)
+    public string AddItem(IList<string> arguments)
     {
-        string result = string.Empty;
+        string result = null;
+
+        string itemName = arguments[0];
         string heroName = arguments[1];
-
-        IItem newItem = itemFactory.Create(arguments);
-        this.heroes[heroName].Inventory.AddCommonItem(newItem);
-
-        result = string.Format(Constants.ItemCreateMessage, newItem.Name, heroName);
-        return result;
-    }
-
-    public string AddRecipeToHero(IList<string> arguments)
-    {
-        var recipeName = arguments[0];
-        var heroName = arguments[1];
         int strengthBonus = int.Parse(arguments[2]);
         int agilityBonus = int.Parse(arguments[3]);
         int intelligenceBonus = int.Parse(arguments[4]);
         int hitPointsBonus = int.Parse(arguments[5]);
         int damageBonus = int.Parse(arguments[6]);
-        var neededItems = arguments.Skip(7).ToList();
 
-        IRecipe recipe = new Recipe(recipeName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus, neededItems);
+        IItem newItem = new CommonItem(itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus);
+        this.heroes[heroName].AddItem(newItem);
 
-        this.heroes[heroName].AddRecipe(recipe);
-
-        return string.Format(Constants.RecipeCreatedMessage, recipeName, heroName);
+        result = string.Format(Constants.ItemCreateMessage, newItem.Name, heroName);
+        return result;
     }
 
-    public string PrintAllHeroes()
+    public string Quit(object argsList)
     {
-        var sb = new StringBuilder();
-        var counter = 1;
-        var heroesToPrint = new SortedSet<AbstractHero>(this.heroes.Values);
-        foreach (var hero in heroesToPrint)
-        {
-            List<string> itemsByName = new List<string>();
-            foreach (var heroItem in hero.Items)
-            {
-                itemsByName.Add(heroItem.Name);
-            }
+        StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"{counter++}. {hero.GetType().Name}: {hero.Name}");
-            sb.AppendLine($"###HitPoints: {hero.HitPoints}");
-            sb.AppendLine($"###Damage: {hero.Damage}");
-            sb.AppendLine($"###Strength: {hero.Strength}");
-            sb.AppendLine($"###Agility: {hero.Agility}");
-            sb.AppendLine($"###Intelligence: {hero.Intelligence}");
-            if (itemsByName.Any())
+        int counter = 1;
+
+        var orderedHeroes = this.heroes
+            .OrderByDescending(h => h.Value.PrimaryStats)
+            .ThenByDescending(h => h.Value.SecondaryStats)
+            .ToDictionary(x => x.Key, y => y.Value);
+
+        foreach (var hero in orderedHeroes)
+        {
+            sb.AppendLine($"{counter++}. {hero.Value.GetType().Name}: {hero.Key}");
+            sb.AppendLine($"###HitPoints: {hero.Value.HitPoints}");
+            sb.AppendLine($"###Damage: {hero.Value.Damage}");
+            sb.AppendLine($"###Strength: {hero.Value.Strength}");
+            sb.AppendLine($"###Agility: {hero.Value.Agility}");
+            sb.AppendLine($"###Intelligence: {hero.Value.Intelligence}");
+
+            if (hero.Value.Items.Count == 0)
             {
-                sb.AppendLine($"###Items: {string.Join(", ", itemsByName)}");
+                sb.AppendLine($"###Items: None");
             }
             else
             {
-                sb.AppendLine($"###Items: None");
+                sb.Append($"###Items: ");
+                var items = hero.Value.Items.Select(i => i.Name).ToList();
+                sb.AppendLine(string.Join(", ", items));
             }
         }
 
         return sb.ToString().Trim();
+    }
+
+    public string AddRecipe(IList<string> arguments)
+    {
+        string result = null;
+
+        string itemName = arguments[0];
+        string heroName = arguments[1];
+        int strengthBonus = int.Parse(arguments[2]);
+        int agilityBonus = int.Parse(arguments[3]);
+        int intelligenceBonus = int.Parse(arguments[4]);
+        int hitPointsBonus = int.Parse(arguments[5]);
+        int damageBonus = int.Parse(arguments[6]);
+        List<string> requiredItems = arguments.Skip(7).ToList();
+
+        IRecipe newRecipe = new RecipeItem(itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus, requiredItems);
+        this.heroes[heroName].AddRecipe(newRecipe);
+
+        result = string.Format(Constants.RecipeCreatedMessage, newRecipe.Name, heroName);
+        return result;
     }
 
     public string Inspect(IList<string> arguments)

@@ -2,13 +2,12 @@
 
 public class ItemCommand : AbstractCommand
 {
-    public ItemCommand(IList<string> args, IHeroManager heroManager)
-        : base(args, heroManager)
+    public ItemCommand(IList<string> args, IManager manager) : base(args, manager)
     {
     }
 
     public override string Execute()
     {
-        return this.HeroManager.AddItemToHero(Args);
+        return base.Manager.AddItem(Args);
     }
 }

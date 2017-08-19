@@ -4,9 +4,9 @@ using System.Linq;
 public class HeroInventory : IInventory
 {
     [Item]
-    private IDictionary<string, IItem> commonItems;
+    private  Dictionary<string, IItem> commonItems;
 
-    private IDictionary<string, IRecipe> recipeItems;
+    private  Dictionary<string, IRecipe> recipeItems;
 
     public HeroInventory()
     {
@@ -47,7 +47,7 @@ public class HeroInventory : IInventory
 
     public void AddRecipeItem(IRecipe recipe)
     {
-        this.recipeItems.Add(recipe.RecipeItemName, recipe);
+        this.recipeItems.Add(recipe.Name, recipe);
         this.CheckRecipes();
     }
 
@@ -55,7 +55,7 @@ public class HeroInventory : IInventory
     {
         foreach (IRecipe recipe in this.recipeItems.Values)
         {
-            IList<string> requiredItems = new List<string>(recipe.RequiredItems);
+            List<string> requiredItems = new List<string>(recipe.RequiredItems);
 
             foreach (IItem commonItem in this.commonItems.Values)
             {
@@ -80,7 +80,7 @@ public class HeroInventory : IInventory
             this.commonItems.Remove(item);
         }
 
-        IItem newItem = new CommonItem(recipe.RecipeItemName,
+        IItem newItem = new CommonItem(recipe.Name,
             recipe.StrengthBonus,
             recipe.AgilityBonus,
             recipe.IntelligenceBonus,

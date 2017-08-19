@@ -2,26 +2,15 @@
 
 public abstract class AbstractCommand : ICommand
 {
-    private IList<string> args;
-    private IHeroManager heroManager;
-
-    protected AbstractCommand(IList<string> args, IHeroManager heroManager)
+    protected AbstractCommand(IList<string> args, IManager manager)
     {
         this.Args = args;
-        this.HeroManager = heroManager;
+        this.Manager = manager;
     }
 
-    public IList<string> Args
-    {
-        get { return args; }
-        set { args = value; }
-    }
+    public IList<string> Args { get; private set; }
 
-    public IHeroManager HeroManager
-    {
-        get { return heroManager; }
-        set { heroManager = value; }
-    }
+    public IManager Manager { get; private set; }
 
     public abstract string Execute();
 }

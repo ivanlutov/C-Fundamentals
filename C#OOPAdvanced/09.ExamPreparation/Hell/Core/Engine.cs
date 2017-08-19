@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class Engine : IEngine
+public class Engine
 {
-    private readonly IInputReader reader;
-    private readonly IOutputWriter writer;
-    private readonly ICommandInterpreter commandInterpreter;
+    private IInputReader reader;
+    private IOutputWriter writer;
+    private IManager heroManager;
 
-    public Engine(IInputReader reader, IOutputWriter writer, ICommandInterpreter commandInterpreter)
+    public Engine(IInputReader reader, IOutputWriter writer, IManager heroManager)
     {
         this.reader = reader;
         this.writer = writer;
-        this.commandInterpreter = commandInterpreter;
+        this.heroManager = heroManager;
     }
 
     public void Run()
@@ -22,18 +22,26 @@ public class Engine : IEngine
         while (isRunning)
         {
             string inputLine = this.reader.ReadLine();
-            IList<string> arguments = this.parseInput(inputLine);
-
-            var result = commandInterpreter.InterpretCommand(arguments);
-            this.writer.WriteLine(result);
-
+            List<string> arguments = this.ParseInput(inputLine);
+            this.writer.WriteLine(this.ProcessInput(arguments));
             isRunning = !this.ShouldEnd(inputLine);
         }
     }
 
-    private IList<string> parseInput(string input)
+    private List<string> ParseInput(string input)
     {
-        return input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        return input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+    }
+
+    private string ProcessInput(List<string> arguments)
+    {
+        string command = arguments[0];
+        arguments.RemoveAt(0);
+
+        Type commandType = Type.GetType(command + "Command");
+        var constructor = commandType.GetConstructor(new Type[] { typeof(IList<string>), typeof(IManager) });
+        ICommand cmd = (ICommand)constructor.Invoke(new object[] { arguments, this.heroManager });
+        return cmd.Execute();
     }
 
     private bool ShouldEnd(string inputLine)

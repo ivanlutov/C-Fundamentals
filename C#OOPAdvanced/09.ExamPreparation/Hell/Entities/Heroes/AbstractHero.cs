@@ -4,16 +4,16 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-public class AbstractHero : IHero, IComparable<AbstractHero>
+public abstract class AbstractHero : IHero, IComparable<AbstractHero>
 {
-    private readonly IInventory inventory;
+    private IInventory inventory;
     private long strength;
     private long agility;
     private long intelligence;
     private long hitPoints;
     private long damage;
 
-    protected AbstractHero(string name, int strength, int agility, int intelligence, int hitPoints, int damage, IInventory inventoty)
+    protected AbstractHero(string name, int strength, int agility, int intelligence, int hitPoints, int damage)
     {
         this.Name = name;
         this.strength = strength;
@@ -21,7 +21,7 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
         this.intelligence = intelligence;
         this.hitPoints = hitPoints;
         this.damage = damage;
-        this.inventory = inventoty;
+        this.inventory = new HeroInventory();
     }
 
     public string Name { get; private set; }
@@ -70,20 +70,19 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
     {
         get
         {
-            Type typeOfInventory = typeof(HeroInventory);
-            FieldInfo[] fieldInfo = typeOfInventory
-                .GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
-            FieldInfo commonItemsStorage = fieldInfo.First(f => f.GetCustomAttributes<ItemAttribute>() != null);
+            Type clazz = typeof(HeroInventory);
+            var field = clazz.GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+                .FirstOrDefault(f => f.GetCustomAttributes(typeof(ItemAttribute)) != null);
 
-            IDictionary<string, IItem> items = (IDictionary<string, IItem>)commonItemsStorage.GetValue(this.inventory);
+            var collection = (Dictionary<string, IItem>)field.GetValue(this.inventory);
 
-            return items.Values;
+            return collection.Values.ToList();
         }
     }
 
-    public IInventory Inventory
+    public void AddItem(IItem item)
     {
-        get { return this.inventory; }
+        this.inventory.AddCommonItem(item);
     }
 
     public void AddRecipe(IRecipe recipe)
@@ -101,34 +100,34 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
         {
             return 1;
         }
-        var primary = other.PrimaryStats.CompareTo(this.PrimaryStats);
+        var primary = this.PrimaryStats.CompareTo(other.PrimaryStats);
         if (primary != 0)
         {
             return primary;
         }
-
-        return other.SecondaryStats.CompareTo(this.SecondaryStats);
+        return this.SecondaryStats.CompareTo(other.SecondaryStats);
     }
 
     public override string ToString()
     {
-        var sb = new StringBuilder();
-        sb.AppendLine($"Hero: {this.Name}, Class: {GetType().Name}");
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"Hero: {this.Name}, Class: {this.GetType().Name}");
         sb.AppendLine($"HitPoints: {this.HitPoints}, Damage: {this.Damage}");
         sb.AppendLine($"Strength: {this.Strength}");
         sb.AppendLine($"Agility: {this.Agility}");
         sb.AppendLine($"Intelligence: {this.Intelligence}");
-        if (this.Items.Count > 0)
+
+        if (this.Items.Count == 0)
         {
-            sb.AppendLine($"Items:");
+            sb.AppendLine("Items: None");
+        }
+        else
+        {
+            sb.AppendLine("Items:");
             foreach (var item in this.Items)
             {
                 sb.AppendLine(item.ToString());
             }
-        }
-        else
-        {
-            sb.AppendLine($"Items: None");
         }
 
         return sb.ToString().Trim();
