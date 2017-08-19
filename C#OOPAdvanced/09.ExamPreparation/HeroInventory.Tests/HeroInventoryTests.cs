@@ -113,6 +113,7 @@ public class HeroInventoryTests
     [Test]
     public void NewInventoryStatsAreZero()
     {
+        this.sut = new HeroInventory();
 
         long totalStatsBonus = this.sut.TotalAgilityBonus
                                + this.sut.TotalStrengthBonus
@@ -127,9 +128,22 @@ public class HeroInventoryTests
     [Test]
     public void CreatingNewHeroInventoryIsSuccessful()
     {
+        this.sut = new HeroInventory();
 
         Assert.Pass();
     }
+
+
+    [Test]
+    public void AddCommonItemIsSuccessful()
+    {
+        IItem item = new CommonItem("Axe", 10, 12, 13, 14, 15);
+
+        this.sut.AddCommonItem(item);
+
+        Assert.Pass();
+    }
+
 
     [Test]
     public void RecipeCompletionChangesStats()
@@ -151,6 +165,7 @@ public class HeroInventoryTests
         Assert.AreEqual(500, totalStatsBonus);
     }
 
+
     [Test]
     public void AddingNullItemThrowsException()
     {
@@ -163,8 +178,77 @@ public class HeroInventoryTests
     public void AddingNullRecipeThrowsException()
     {
         IRecipe recipe = null;
-        var heroInventory = new HeroInventory();
 
         Assert.Throws<NullReferenceException>(() => this.sut.AddRecipeItem(recipe));
+    }
+
+    [Test]
+    public void DuplicatingCommonItemThrowsException()
+    {
+        IItem item = new CommonItem("BootsOfTravell", 100, 100, 100, 100, 100);
+
+        this.sut.AddCommonItem(item);
+
+        Assert.Throws<ArgumentException>(() => this.sut.AddCommonItem(item));
+    }
+
+    [Test]
+    public void DuplicatingRecipeThrowsException()
+    {
+        List<string> recipeComponents1 = new List<string> { "BootsOfSpeed" };
+        IRecipe recipe1 = new RecipeItem("BootsOfTravell", 100, 100, 100, 100, 100, recipeComponents1);
+
+        this.sut.AddRecipeItem(recipe1);
+
+        Assert.Throws<ArgumentException>(() => this.sut.AddRecipeItem(recipe1));
+    }
+
+    [Test]
+    public void ChainingRecipes()
+    {
+        List<string> recipeComponents1 = new List<string> { "BootsOfSpeed" };
+        IRecipe recipe1 = new RecipeItem("BootsOfTravell", 100, 100, 100, 100, 100, recipeComponents1);
+        IItem boots = new CommonItem("BootsOfSpeed", 10, 10, 10, 10, 10);
+
+        List<string> recipeComponents2 = new List<string> { "BootsOfTravell" };
+        IRecipe recipe2 = new RecipeItem("BootsOfTravell2", 200, 200, 200, 200, 200, recipeComponents2);
+
+        this.sut.AddCommonItem(boots);
+        this.sut.AddRecipeItem(recipe1);
+        this.sut.AddRecipeItem(recipe2);
+        long totalStatsBonus = this.sut.TotalAgilityBonus
+                               + this.sut.TotalStrengthBonus
+                               + this.sut.TotalIntelligenceBonus
+                               + this.sut.TotalHitPointsBonus
+                               + this.sut.TotalDamageBonus;
+
+        Assert.AreEqual(1000, totalStatsBonus);
+    }
+
+    [Test]
+    public void AddingCommonItemsChangesTotalDamage()
+    {
+        IItem item1 = new CommonItem("Axe", 11, 12, 13, 14, 15);
+        IItem item2 = new CommonItem("Fork", 31, 32, 33, 34, 35);
+
+        this.sut.AddCommonItem(item1);
+        this.sut.AddCommonItem(item2);
+
+        Assert.AreEqual(50, this.sut.TotalDamageBonus);
+    }
+
+    [Test]
+    public void CompleteRecipeForNewItem()
+    {
+        IItem relic = new CommonItem("SacredRelic", 0, 0, 0, 0, 60);
+        List<string> recipeComponents = new List<string> { "SacredRelic", "RadianceRecipe" };
+        IRecipe recipe = new RecipeItem("Radiance", 0, 0, 0, 0, 80, recipeComponents);
+        IItem radianceRecipe = new CommonItem("RadianceRecipe", 0, 0, 0, 0, 0);
+
+        this.sut.AddCommonItem(relic);
+        this.sut.AddRecipeItem(recipe);
+        this.sut.AddCommonItem(radianceRecipe);
+
+        Assert.AreEqual(80, this.sut.TotalDamageBonus);
     }
 }
