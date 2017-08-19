@@ -72,7 +72,6 @@
         {
             var result = string.Empty;
             var registeredEmergencies = 0;
-            var hasNotRegisteredEmergency = true;
 
             var typeOfEmergency = args[1];
             var centersTypeToSearch = string.Empty;
@@ -91,35 +90,33 @@
 
             var allEmergencyOfThisType = this.emergencies.Where(e => e.GetType().Name.Contains(typeOfEmergency)).ToList();
             var allCentersOfThisType = this.centers.Where(c => c.GetType().Name.Contains(centersTypeToSearch)).ToList();
-
+            var allEmergencyForRegistered = allEmergencyOfThisType.Count;
             foreach (var emergencyCenter in allCentersOfThisType)
             {
-                if (registeredEmergencies == allEmergencyOfThisType.Count)
-                {
-                    break;
-                }
+                var currentRemovedEmergencies = 0;
 
                 foreach (var emergency in allEmergencyOfThisType)
                 {
-                    if (registeredEmergencies == allEmergencyOfThisType.Count)
+                    if (registeredEmergencies == allEmergencyForRegistered)
                     {
                         break;
                     }
-
                     if (emergencyCenter.isForRetirement())
                     {
                         emergencyCenter.Emergencies.Add(emergency);
                         this.emergencies.Remove(emergency);
                         registeredEmergencies++;
+                        currentRemovedEmergencies++;
                     }
-                    else
-                    {
-                        hasNotRegisteredEmergency = false;
-                    }
+                }
+
+                for (int i = 0; i < currentRemovedEmergencies; i++)
+                {
+                    allEmergencyOfThisType.RemoveAt(0);
                 }
             }
 
-            if (hasNotRegisteredEmergency)
+            if (registeredEmergencies == allEmergencyForRegistered)
             {
                 result = $"Successfully responded to all {typeOfEmergency} emergencies.";
             }
