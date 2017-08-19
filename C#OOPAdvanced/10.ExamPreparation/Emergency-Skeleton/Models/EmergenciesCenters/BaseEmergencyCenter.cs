@@ -43,7 +43,7 @@
 
         public bool isForRetirement()
         {
-            if (this.AmountOfMaximumEmergencies >= this.Emergencies.Count)
+            if (this.AmountOfMaximumEmergencies > this.Emergencies.Count)
             {
                 return true;
             }

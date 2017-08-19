@@ -13,9 +13,6 @@
         private IList<IEmergencyCenter> centers;
         private int countOfRegisteredEmergencies;
         private int currentlyRegisteredEmergencies;
-        private int countOfFireCenters;
-        private int countOfMedicalCenters;
-        private int countOfPoliceCenters;
 
         public EmergencyManagementSystem(IEmergencyFactory emergencyFactory, IServiceCenterFactory centerFactory)
         {
@@ -24,9 +21,6 @@
             this.emergencies = new List<IEmergency>();
             this.centers = new List<IEmergencyCenter>();
             this.countOfRegisteredEmergencies = 0;
-            this.countOfFireCenters = 0;
-            this.countOfMedicalCenters = 0;
-            this.countOfPoliceCenters = 0;
             this.currentlyRegisteredEmergencies = 0;
         }
 
@@ -60,7 +54,6 @@
         {
             var fireCenter = this.centerFactory.Create(args);
             this.centers.Add(fireCenter);
-            this.countOfFireCenters++;
 
             return $"Registered Fire Service Emergency Center - {args[1]}.";
         }
@@ -69,7 +62,6 @@
         {
             var medicalCenter = this.centerFactory.Create(args);
             this.centers.Add(medicalCenter);
-            this.countOfMedicalCenters++;
 
             return $"Registered Medical Service Emergency Center - {args[1]}.";
         }
@@ -78,7 +70,6 @@
         {
             var policeCenter = this.centerFactory.Create(args);
             this.centers.Add(policeCenter);
-            this.countOfPoliceCenters++;
 
             return $"Registered Police Service Emergency Center - {args[1]}.";
         }
@@ -114,6 +105,7 @@
                     if (emergencyCenter.isForRetirement())
                     {
                         emergencyCenter.Emergencies.Add(emergency);
+                        this.emergencies.Remove(emergency);
                         registeredEmergencies++;
                     }
                     else
@@ -138,6 +130,15 @@
 
         public string EmergencyReport()
         {
+            var fireCenters = this.centers.Count(c => c.GetType().FullName.Contains("Fire") &&
+                                                      c.Emergencies.Count < c.AmountOfMaximumEmergencies);
+
+            var medicalCenters = this.centers.Count(c => c.GetType().FullName.Contains("Medical") &&
+                                                         c.Emergencies.Count < c.AmountOfMaximumEmergencies);
+
+            var policeCenters = this.centers.Count(c => c.GetType().FullName.Contains("Police") &&
+                                                        c.Emergencies.Count < c.AmountOfMaximumEmergencies);
+
             var countOfDamageFixed = this.centers.Where(c => c.GetType().FullName.Contains("Fire"))
                 .Sum(c => c.Emergencies.Sum(x => x.GetInfo()));
 
@@ -146,14 +147,14 @@
 
             var specialCasesProcessed = this.centers.Where(c => c.GetType().FullName.Contains("Police"))
                 .Sum(c => c.Emergencies.Sum(x => x.GetInfo()));
-
+          
             var sb = new StringBuilder();
             sb.AppendLine("PRRM Services Live Statistics");
-            sb.AppendLine($"Fire Service Centers: {this.countOfFireCenters}");
-            sb.AppendLine($"Medical Service Centers: {this.countOfMedicalCenters}");
-            sb.AppendLine($"Police Service Centers: {this.countOfPoliceCenters}");
+            sb.AppendLine($"Fire Service Centers: {fireCenters}");
+            sb.AppendLine($"Medical Service Centers: {medicalCenters}");
+            sb.AppendLine($"Police Service Centers: {policeCenters}");
             sb.AppendLine($"Total Processed Emergencies: {this.currentlyRegisteredEmergencies}");
-            sb.AppendLine($"Currently Registered Emergencies: {this.countOfRegisteredEmergencies - this.currentlyRegisteredEmergencies}");
+            sb.AppendLine($"Currently Registered Emergencies: {this.emergencies.Count}");
             sb.AppendLine($"Total Property Damage Fixed: {countOfDamageFixed}");
             sb.AppendLine($"Total Health Casualties Saved: {healthCasualtiesSaved}");
             sb.AppendLine($"Total Special Cases Processed: {specialCasesProcessed}");
