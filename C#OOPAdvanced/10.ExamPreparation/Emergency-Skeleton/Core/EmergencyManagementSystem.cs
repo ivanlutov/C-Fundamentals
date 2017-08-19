@@ -94,12 +94,23 @@
 
             foreach (var emergencyCenter in allCentersOfThisType)
             {
+                if (registeredEmergencies == allEmergencyOfThisType.Count)
+                {
+                    break;
+                }
+
                 foreach (var emergency in allEmergencyOfThisType)
                 {
+                    if (registeredEmergencies == allEmergencyOfThisType.Count)
+                    {
+                        break;
+                    }
+
                     if (emergencyCenter.isForRetirement())
                     {
                         emergencyCenter.Emergencies.Add(emergency);
                         this.emergencies.Remove(emergency);
+                        registeredEmergencies++;
                     }
                     else
                     {
