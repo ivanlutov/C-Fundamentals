@@ -63,6 +63,7 @@
                 }
 
                 this.writer.WriteLine(result);
+
                 input = this.reader.ReadLine();
             }
         }

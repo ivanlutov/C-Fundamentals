@@ -88,8 +88,8 @@
                 centersTypeToSearch = "Police";
             }
 
-            var allEmergencyOfThisType = this.emergencies.Where(e => e.GetType().Name.Contains(typeOfEmergency)).ToList();
-            var allCentersOfThisType = this.centers.Where(c => c.GetType().Name.Contains(centersTypeToSearch)).ToList();
+            var allEmergencyOfThisType = this.emergencies.Where(e => e.GetType().FullName.Contains(typeOfEmergency)).ToList();
+            var allCentersOfThisType = this.centers.Where(c => c.GetType().FullName.Contains(centersTypeToSearch)).ToList();
             var allEmergencyForRegistered = allEmergencyOfThisType.Count;
             foreach (var emergencyCenter in allCentersOfThisType)
             {
@@ -122,7 +122,7 @@
             }
             else
             {
-                result = $"{typeOfEmergency} Emergencies left to process: {allEmergencyOfThisType.Count - registeredEmergencies}.";
+                result = $"{typeOfEmergency} Emergencies left to process: {allEmergencyForRegistered-registeredEmergencies}.";
             }
 
             return result;
@@ -130,13 +130,13 @@
 
         public string EmergencyReport()
         {
-            var fireCenters = this.centers.Count(c => c.GetType().FullName.Contains("Fire") &&
+            var countOfFireCenters = this.centers.Count(c => c.GetType().FullName.Contains("Fire") &&
                                                       c.Emergencies.Count < c.AmountOfMaximumEmergencies);
 
-            var medicalCenters = this.centers.Count(c => c.GetType().FullName.Contains("Medical") &&
+            var countOfMedicalCenters = this.centers.Count(c => c.GetType().FullName.Contains("Medical") &&
                                                          c.Emergencies.Count < c.AmountOfMaximumEmergencies);
 
-            var policeCenters = this.centers.Count(c => c.GetType().FullName.Contains("Police") &&
+            var countOfPoliceCenters = this.centers.Count(c => c.GetType().FullName.Contains("Police") &&
                                                         c.Emergencies.Count < c.AmountOfMaximumEmergencies);
 
             var countOfRegisteredEmergency = this.centers.Sum(c => c.Emergencies.Count);
@@ -147,19 +147,19 @@
             var healthCasualtiesSaved = this.centers.Where(c => c.GetType().FullName.Contains("Medical"))
                 .Sum(c => c.Emergencies.Sum(x => x.GetInfo()));
 
-            var specialCasesProcessed = this.centers.Where(c => c.GetType().FullName.Contains("Police"))
+            var countOfSpecialCasesProcessed = this.centers.Where(c => c.GetType().FullName.Contains("Police"))
                 .Sum(c => c.Emergencies.Sum(x => x.GetInfo()));
 
             var sb = new StringBuilder();
             sb.AppendLine("PRRM Services Live Statistics");
-            sb.AppendLine($"Fire Service Centers: {fireCenters}");
-            sb.AppendLine($"Medical Service Centers: {medicalCenters}");
-            sb.AppendLine($"Police Service Centers: {policeCenters}");
+            sb.AppendLine($"Fire Service Centers: {countOfFireCenters}");
+            sb.AppendLine($"Medical Service Centers: {countOfMedicalCenters}");
+            sb.AppendLine($"Police Service Centers: {countOfPoliceCenters}");
             sb.AppendLine($"Total Processed Emergencies: {countOfRegisteredEmergency}");
             sb.AppendLine($"Currently Registered Emergencies: {this.emergencies.Count}");
             sb.AppendLine($"Total Property Damage Fixed: {countOfDamageFixed}");
             sb.AppendLine($"Total Health Casualties Saved: {healthCasualtiesSaved}");
-            sb.AppendLine($"Total Special Cases Processed: {specialCasesProcessed}");
+            sb.AppendLine($"Total Special Cases Processed: {countOfSpecialCasesProcessed}");
 
             return sb.ToString().Trim();
         }
