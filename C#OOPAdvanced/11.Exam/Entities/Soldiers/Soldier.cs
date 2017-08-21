@@ -19,7 +19,7 @@ public abstract class Soldier : ISoldier
 
     public string Name { get; }
     public int Age { get; }
-    public double Experience { get; set; }
+    public double Experience { get; private set; }
 
     public double Endurance
     {
