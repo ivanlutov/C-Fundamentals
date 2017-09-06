@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 public class RaceTower
@@ -14,7 +13,9 @@ public class RaceTower
     private int numberOfLaps;
     private int currentLap;
     private Weather weather;
+    public Driver Winner { get; private set; }
     public int LenghtOfTrack { get; set; }
+    public bool IsEndOfRace { get; private set; }
     public RaceTower()
     {
         this.driverFactory = new DriverFactory();
@@ -24,6 +25,7 @@ public class RaceTower
         this.unfinishedDrivers = new Dictionary<Driver, string>();
         this.weather = Weather.Sunny;
         this.currentLap = 0;
+        this.IsEndOfRace = false;
     }
     public int NumberOfLaps
     {
@@ -74,7 +76,6 @@ public class RaceTower
             return e.Message;
         }
 
-
         for (int i = 0; i < currentNumberOfLaps; i++)
         {
             foreach (var driver in this.drivers.Values)
@@ -82,7 +83,6 @@ public class RaceTower
                 driver.TotalTime += 60 / (this.LenghtOfTrack / driver.Speed);
             }
 
-            this.currentLap++;
             
             foreach (var driver in this.drivers.Values)
             {
@@ -126,6 +126,7 @@ public class RaceTower
                 }
             }
 
+            this.currentLap++;
             var driversToOvertaken = this.drivers.Values.OrderByDescending(d => d.TotalTime).ToList();
 
             for (int j = 0; j < driversToOvertaken.Count - 1; j++)
@@ -135,64 +136,56 @@ public class RaceTower
                 var timeFirstDriver = firstDriver.TotalTime;
                 var timeSecondDriver = secondDriver.TotalTime;
                 var difference = Math.Abs(timeFirstDriver - timeSecondDriver);
+                var intervalToOvertake = 2;
+                bool isCrash = false;
 
                 if (firstDriver.GetType().Name == "AggressiveDriver"
-                    && firstDriver.Car.Tyre.GetType().Name == "UltrasoftTyre" && difference <= 3)
+                    && firstDriver.Car.Tyre.GetType().Name == "UltrasoftTyre")
                 {
+                    intervalToOvertake = 3;
                     if (this.weather == Weather.Foggy)
                     {
-                        this.unfinishedDrivers.Add(firstDriver, "Crashed");
-                    }
-                    else
-                    {
-                        secondDriver.TotalTime -= difference;
-                        firstDriver.TotalTime += difference;
-                        result.AppendLine(
-                            $"{firstDriver.Name} has overtaken {secondDriver.Name} on lap {this.currentLap}.");
+                        isCrash = true;
                     }
                 }
-                else if (firstDriver.GetType().Name == "EnduranceDriver"
-                    && firstDriver.Car.Tyre.GetType().Name == "HardTyre" && difference <= 3)
+
+                if (firstDriver.GetType().Name == "EnduranceDriver"
+                    && firstDriver.Car.Tyre.GetType().Name == "HardTyre")
                 {
+                    intervalToOvertake = 3;
                     if (this.weather == Weather.Rainy)
                     {
-                        this.unfinishedDrivers.Add(firstDriver, "Crashed");
-                    }
-                    else
-                    {
-                        secondDriver.TotalTime -= difference;
-                        firstDriver.TotalTime += difference;
-                        result.AppendLine(
-                            $"{secondDriver.Name} has overtaken {firstDriver.Name} on lap {this.currentLap}.");
+                        isCrash = true;
                     }
                 }
-                else if (difference <= 2)
-                {
-                    secondDriver.TotalTime -= difference;
-                    firstDriver.TotalTime += difference;
-                    result.AppendLine(
-                        $"{secondDriver.Name} has overtaken {firstDriver.Name} on lap {this.currentLap}.");
-                }
-            }
 
-            // махане на отпаднали състезатели от катастрофа
-            foreach (var crashDriver in this.unfinishedDrivers)
-            {
-                if (this.drivers.ContainsKey(crashDriver.Key.Name))
+                if (difference <= intervalToOvertake)
                 {
-                    this.drivers.Remove(crashDriver.Key.Name);
+                    if (isCrash)
+                    {
+                        this.unfinishedDrivers.Add(firstDriver, "Crashed");
+                        foreach (var crashDriver in this.unfinishedDrivers)
+                        {
+                            if (this.drivers.ContainsKey(crashDriver.Key.Name))
+                            {
+                                this.drivers.Remove(crashDriver.Key.Name);
+                            }
+                        }
+                        continue;
+                    }
+
+                    firstDriver.TotalTime -= intervalToOvertake;
+                    secondDriver.TotalTime += intervalToOvertake;
+                    result.AppendLine(
+                        $"{firstDriver.Name} has overtaken {secondDriver.Name} on lap {this.currentLap}.");
                 }
             }
         }
 
         if (this.NumberOfLaps == 0)
         {
-            var sb = new StringBuilder();
-
-            var winner = this.drivers.Values.OrderBy(d => d.TotalTime).First();
-            sb.AppendLine($"{winner.Name} wins the race for {winner.TotalTime:F3} seconds.");
-
-            return sb.ToString().Trim();
+            this.IsEndOfRace = true;
+            this.Winner = this.drivers.Values.OrderBy(d => d.TotalTime).FirstOrDefault();
         }
 
         return result.ToString().Trim();
