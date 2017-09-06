@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 public class RaceTower
@@ -39,15 +40,22 @@ public class RaceTower
     }
     public void RegisterDriver(List<string> commandArgs)
     {
-        var tyreArgs = commandArgs.Skip(4).ToList();
-        var carArgs = commandArgs.Skip(2).Take(2).ToList();
-        var driverArgs = commandArgs.Take(2).ToList();
+        try
+        {
+            var tyreArgs = commandArgs.Skip(4).ToList();
+            var carArgs = commandArgs.Skip(2).Take(2).ToList();
+            var driverArgs = commandArgs.Take(2).ToList();
 
-        var tyre = this.tyreFactory.Create(tyreArgs);
-        var car = this.carFactory.Create(carArgs, tyre);
-        var driver = this.driverFactory.Create(driverArgs, car);
+            var tyre = this.tyreFactory.Create(tyreArgs);
+            var car = this.carFactory.Create(carArgs, tyre);
+            var driver = this.driverFactory.Create(driverArgs, car);
 
-        this.drivers.Add(driverArgs[1], driver);
+            this.drivers.Add(driverArgs[1], driver);
+        }
+        catch (Exception e)
+        {
+          
+        }
     }
 
     public string CompleteLaps(List<string> commandArgs)
@@ -80,7 +88,7 @@ public class RaceTower
             {
                 try
                 {
-                    driver.Car.FuelAmount -= (this.LenghtOfTrack * driver.FuelConsumptionPerKm);
+                    driver.ReduceFuelAmount(this.LenghtOfTrack);
                 }
                 catch (Exception e)
                 {
@@ -88,7 +96,7 @@ public class RaceTower
                 }
             }
 
-            // махане на отпаднал състезател заради липса на гориво
+            // проверка за отпаднал състезател
             foreach (var crashDriver in this.unfinishedDrivers)
             {
                 if (this.drivers.ContainsKey(crashDriver.Key.Name))
@@ -109,7 +117,7 @@ public class RaceTower
                 }
             }
 
-            // махане на отпаднал състезател поради спукване на гума
+             // проверка за отпаднал състезател
             foreach (var crashDriver in this.unfinishedDrivers)
             {
                 if (this.drivers.ContainsKey(crashDriver.Key.Name))
@@ -207,12 +215,12 @@ public class RaceTower
         {
             case "Refuel":
                 var fuelAmount = double.Parse(commandArgs[2]);
-                driver.Car.FuelAmount += fuelAmount;
+                driver.Car.Refuel(fuelAmount);
                 break;
             case "ChangeTyres":
                 var tyreArgs = commandArgs.Skip(2).ToList();
                 var newTyre = this.tyreFactory.Create(tyreArgs);
-                driver.Car.Tyre = newTyre;
+                driver.Car.ChangeTyre(newTyre);
                 break;
         }
     }

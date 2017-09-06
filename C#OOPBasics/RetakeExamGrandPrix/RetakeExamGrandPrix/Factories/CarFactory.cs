@@ -10,4 +10,3 @@ public class CarFactory
         return new Car(hp, fuelAmount, tyre);
     }
 }
-

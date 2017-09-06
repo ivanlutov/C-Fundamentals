@@ -4,16 +4,16 @@ public abstract class Tyre
 {
     private const double StartPointOfDegradation = 100;
 
-    private string name;
     private double hardness;
     private double degradation;
 
-    protected Tyre(string name, double hardness)
+    protected Tyre(double hardness)
     {
-        this.name = name;
         this.Hardness = hardness;
         this.Degradation = StartPointOfDegradation;
     }
+
+    public abstract string Name { get; }
     public virtual double Degradation
     {
         get { return this.degradation; }
@@ -28,11 +28,7 @@ public abstract class Tyre
         }
     }
 
-    public double Hardness
-    {
-        get { return this.hardness; }
-        private set { this.hardness = value; }
-    }
+    public double Hardness { get; }
 
     public virtual void ReduceDegradation()
     {

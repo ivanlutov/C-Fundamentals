@@ -1,10 +1,8 @@
 ﻿using System;
-
 public class Car
 {
     private const double MaxCapacityOfFuelTank = 160;
 
-    private int hp;
     private double fuelAmount;
     private Tyre tyre;
 
@@ -14,23 +12,20 @@ public class Car
         this.FuelAmount = fuelAmount;
         this.Tyre = tyre;
     }
-    public int Hp
-    {
-        get { return this.hp; }
-        private set { this.hp = value; }
-    }
+
+    public int Hp { get; }
 
     public Tyre Tyre
     {
         get { return this.tyre; }
-        set { this.tyre = value; }
+        private set { this.tyre = value; }
     }
 
     public double FuelAmount
     {
         get { return this.fuelAmount; }
 
-        set
+        private set
         {
             if (value < 0)
             {
@@ -46,5 +41,19 @@ public class Car
                 this.fuelAmount = value;
             }
         }
+    }
+
+    public void ReduceFuel(int length, double fuelConsumption)
+    {
+        this.FuelAmount = this.FuelAmount - (length * fuelConsumption);
+    }
+    public void Refuel(double fuel)
+    {
+        this.FuelAmount += fuel;
+    }
+
+    public void ChangeTyre(Tyre newTyre)
+    {
+        this.Tyre = newTyre;
     }
 }

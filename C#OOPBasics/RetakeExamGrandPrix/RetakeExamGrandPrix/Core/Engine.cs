@@ -9,6 +9,7 @@ public class Engine
     {
         this.raceTower = raceTower;
     }
+
     public void Start()
     {
         var numberOfLaps = int.Parse(Console.ReadLine());
@@ -28,9 +29,11 @@ public class Engine
                 case "RegisterDriver":
                     this.raceTower.RegisterDriver(commandArgs);
                     break;
+
                 case "Leaderboard":
                     Console.WriteLine(this.raceTower.GetLeaderboard());
                     break;
+
                 case "CompleteLaps":
                     var result = this.raceTower.CompleteLaps(commandArgs);
                     if (result != string.Empty)
@@ -42,9 +45,11 @@ public class Engine
                         Environment.Exit(0);
                     }
                     break;
+
                 case "Box":
                     this.raceTower.DriverBoxes(commandArgs);
                     break;
+
                 case "ChangeWeather":
                     this.raceTower.ChangeWeather(commandArgs);
                     break;

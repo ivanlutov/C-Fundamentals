@@ -12,8 +12,10 @@ public class DriverFactory
         {
             case "Aggressive":
                 return new AggressiveDriver(name, car);
+
             case "Endurance":
-                return new EnduranceDriver(name,car);
+                return new EnduranceDriver(name, car);
+
             default:
                 throw new ArgumentException();
         }

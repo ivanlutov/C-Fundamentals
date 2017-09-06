@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 public class TyreFactory
 {
     public Tyre Create(List<string> args)
@@ -10,8 +11,10 @@ public class TyreFactory
         {
             case "Ultrasoft":
                 return new UltrasoftTyre(tyreHardness, double.Parse(args[2]));
+
             case "Hard":
                 return new HardTyre(tyreHardness);
+
             default:
                 throw new ArgumentException();
         }
