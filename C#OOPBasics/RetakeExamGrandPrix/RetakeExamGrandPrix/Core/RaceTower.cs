@@ -16,6 +16,7 @@ public class RaceTower
     public Driver Winner { get; private set; }
     public int LenghtOfTrack { get; set; }
     public bool IsEndOfRace { get; private set; }
+
     public RaceTower()
     {
         this.driverFactory = new DriverFactory();
@@ -27,6 +28,7 @@ public class RaceTower
         this.currentLap = 0;
         this.IsEndOfRace = false;
     }
+
     public int NumberOfLaps
     {
         get { return this.numberOfLaps; }
@@ -40,6 +42,7 @@ public class RaceTower
             this.numberOfLaps = value;
         }
     }
+
     public void RegisterDriver(List<string> commandArgs)
     {
         try
@@ -56,7 +59,6 @@ public class RaceTower
         }
         catch (Exception e)
         {
-          
         }
     }
 
@@ -69,7 +71,6 @@ public class RaceTower
         try
         {
             this.NumberOfLaps -= currentNumberOfLaps;
-
         }
         catch (Exception e)
         {
@@ -83,32 +84,11 @@ public class RaceTower
                 driver.TotalTime += 60 / (this.LenghtOfTrack / driver.Speed);
             }
 
-            
             foreach (var driver in this.drivers.Values)
             {
                 try
                 {
                     driver.ReduceFuelAmount(this.LenghtOfTrack);
-                }
-                catch (Exception e)
-                {
-                    this.unfinishedDrivers.Add(driver, e.Message);
-                }
-            }
-
-            // проверка за отпаднал състезател
-            foreach (var crashDriver in this.unfinishedDrivers)
-            {
-                if (this.drivers.ContainsKey(crashDriver.Key.Name))
-                {
-                    this.drivers.Remove(crashDriver.Key.Name);
-                }
-            }
-
-            foreach (var driver in this.drivers.Values)
-            {
-                try
-                {
                     driver.Car.Tyre.ReduceDegradation();
                 }
                 catch (Exception e)
@@ -117,7 +97,6 @@ public class RaceTower
                 }
             }
 
-             // проверка за отпаднал състезател
             foreach (var crashDriver in this.unfinishedDrivers)
             {
                 if (this.drivers.ContainsKey(crashDriver.Key.Name))
@@ -210,6 +189,7 @@ public class RaceTower
                 var fuelAmount = double.Parse(commandArgs[2]);
                 driver.Car.Refuel(fuelAmount);
                 break;
+
             case "ChangeTyres":
                 var tyreArgs = commandArgs.Skip(2).ToList();
                 var newTyre = this.tyreFactory.Create(tyreArgs);

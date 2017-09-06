@@ -14,6 +14,7 @@ public abstract class Tyre
     }
 
     public abstract string Name { get; }
+
     public virtual double Degradation
     {
         get { return this.degradation; }

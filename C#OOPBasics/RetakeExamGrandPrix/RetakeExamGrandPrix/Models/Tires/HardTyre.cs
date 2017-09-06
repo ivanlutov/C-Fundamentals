@@ -6,5 +6,6 @@
         : base(hardness)
     {
     }
+
     public override string Name => HardTyreName;
 }

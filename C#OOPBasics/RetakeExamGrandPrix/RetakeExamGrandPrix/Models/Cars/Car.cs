@@ -1,4 +1,5 @@
 ﻿using System;
+
 public class Car
 {
     private const double MaxCapacityOfFuelTank = 160;
@@ -47,6 +48,7 @@ public class Car
     {
         this.FuelAmount = this.FuelAmount - (length * fuelConsumption);
     }
+
     public void Refuel(double fuel)
     {
         this.FuelAmount += fuel;

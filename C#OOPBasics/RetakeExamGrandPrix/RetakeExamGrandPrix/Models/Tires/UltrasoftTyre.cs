@@ -6,10 +6,11 @@ public class UltrasoftTyre : Tyre
     private double degradation;
 
     public UltrasoftTyre(double hardness, double grip)
-        : base( hardness)
+        : base(hardness)
     {
         this.Grip = grip;
     }
+
     public double Grip { get; }
 
     public override string Name => UltrasoftTyreName;

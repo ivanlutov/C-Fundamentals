@@ -12,7 +12,9 @@
         this.FuelConsumptionPerKm = fuelConsumptionPerKm;
         this.totalTime = 0;
     }
+
     public string Name { get; }
+
     public double TotalTime
     {
         get { return this.totalTime; }
